@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.develove">
+    package="org.luxecraft.develove">
    <application
-        android:label="develove"
+        android:label="Develove"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
