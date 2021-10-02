@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:develove/views/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:develove/components/auth_state.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,7 +11,13 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends AuthState<SplashScreen>  {
+  @override
+  void initState() {
+    recoverSupabaseSession();
+    super.initState();
+  }
+
   final PageController _pageController = PageController();
   int _currentPage = 0;
   final List<Widget> _pages = [
