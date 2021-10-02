@@ -13,6 +13,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends AuthState<LoginView> {
+  // ignore: unused_field
   bool _isLoading = false;
 
   Future<void> _signInWithGoogle() async {
