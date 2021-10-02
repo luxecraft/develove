@@ -17,7 +17,7 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
   void onAuthenticated(Session session) {
     final user = session.user;
     if (user != null) {
-      _userId = user.id;
+      _userId = user.email;
     }
   }
 

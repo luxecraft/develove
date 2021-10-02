@@ -1,5 +1,9 @@
+import 'package:develove/components/auth_state.dart';
+import 'package:develove/utils/constants.dart';
 import 'package:develove/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase/supabase.dart';
+import 'package:supabase_flutter/src/supabase_auth.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -8,7 +12,22 @@ class LoginView extends StatefulWidget {
   _LoginViewState createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends AuthState<LoginView> {
+  bool _isLoading = false;
+
+  Future<void> _signIn() async {
+    setState(() {
+      _isLoading = true;
+    });
+    final res = await supabase.auth.signInWithProvider(Provider.google, options: AuthOptions(
+      redirectTo: 'org.luxecraft.develove://login-callback/',
+    ));
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,10 +120,7 @@ class _LoginViewState extends State<LoginView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (_) => HomeView()),
-                              (route) => false);
+                          _signIn();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
