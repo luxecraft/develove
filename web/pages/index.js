@@ -11,6 +11,16 @@ export default function Home() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("supabase.auth.token");
+    console.log(token);
+    if (token) {
+      const refresh_token =
+        JSON.parse(token)["currentSession"]["refresh_token"];
+      console.log(refresh_token);
+      supabase.auth.signIn({
+        refreshToken: refresh_token,
+      });
+    }
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(session);
       setUser(session.user);
