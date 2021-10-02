@@ -21,7 +21,8 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(44.0),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.1),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -47,55 +48,46 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Email"),
-                          SizedBox(height: 5),
-                          TextField(
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusColor: Colors.transparent,
-                              fillColor: Color(0xFF434343),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Confirmation Code"),
-                          SizedBox(height: 5),
-                          TextField(
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusColor: Colors.transparent,
-                              fillColor: Color(0xFF434343),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     children: [
+                      MaterialButton(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeView()),
+                              (route) => false);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/GitHub.png",
+                                height: 24.0,
+                                width: 24.0,
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                  child: Text(
+                                "Sign in with Github",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    ?.apply(
+                                        color: Colors.black,
+                                        fontWeightDelta: 2),
+                              )),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16),
                       MaterialButton(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(

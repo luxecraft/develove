@@ -123,7 +123,8 @@ class SplashPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -154,7 +155,8 @@ class SplashPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -188,7 +190,8 @@ class SplashPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -222,7 +225,8 @@ class SplashPage4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
