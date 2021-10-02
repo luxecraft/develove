@@ -1,4 +1,4 @@
-import 'package:develove/views/home_view.dart';
+import 'package:develove/views/home_view/home_view.dart';
 import 'package:develove/views/login_view.dart';
 import 'package:develove/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +28,16 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        cardTheme: CardTheme(
+          color: Color(0xFF474747),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF6ECD95),
+        ),
+        appBarTheme: AppBarTheme(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+        ),
         primarySwatch: Colors.green,
         primaryTextTheme: Theme.of(context)
             .primaryTextTheme
@@ -35,6 +45,18 @@ class App extends StatelessWidget {
         fontFamily: "Montserrat",
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.transparent,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          backgroundColor: Color(0xFF282828),
+          selectedIconTheme: IconThemeData(
+            color: Color(0xFF6ECD95),
+            size: 30,
+          ),
+          unselectedIconTheme: IconThemeData(
+            size: 30,
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',

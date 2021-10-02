@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends AuthState<SplashScreen>  {
+class _SplashScreenState extends AuthState<SplashScreen> {
   @override
   void initState() {
     recoverSupabaseSession();
