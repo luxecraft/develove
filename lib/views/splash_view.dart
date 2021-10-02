@@ -53,7 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   DotsIndicator(
                     controller: _pageController,
                     itemCount: _pages.length,
-                    onPageSelected: (index) {},
                     color: Color(0xFF57AF70),
                   ),
                   Row(
@@ -258,13 +257,11 @@ class DotsIndicator extends AnimatedWidget {
   DotsIndicator({
     required this.controller,
     required this.itemCount,
-    required this.onPageSelected,
     this.color: Colors.white,
   }) : super(listenable: controller);
 
   final PageController controller;
   final int itemCount;
-  final ValueChanged<int> onPageSelected;
   final Color color;
   static const double _kDotSize = 8.0;
   static const double _kMaxZoom = 2.0;
@@ -278,18 +275,16 @@ class DotsIndicator extends AnimatedWidget {
       ),
     );
     double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedness;
-    return new Container(
+    return Container(
       width: _kDotSpacing,
-      child: new Center(
-        child: new Material(
+      child: Center(
+        child: Material(
           color: color,
           type: MaterialType.circle,
-          child: new Container(
+          child: Container(
             width: _kDotSize * zoom,
             height: _kDotSize * zoom,
-            child: new InkWell(
-              onTap: () => onPageSelected(index),
-            ),
+            child: Container(),
           ),
         ),
       ),
@@ -297,9 +292,9 @@ class DotsIndicator extends AnimatedWidget {
   }
 
   Widget build(BuildContext context) {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: new List<Widget>.generate(itemCount, _buildDot),
+      children: List<Widget>.generate(itemCount, _buildDot),
     );
   }
 }
