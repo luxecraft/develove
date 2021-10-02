@@ -19,9 +19,10 @@ class _LoginViewState extends AuthState<LoginView> {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.google, options: AuthOptions(
-      redirectTo: 'org.luxecraft.develove://login-callback/',
-    ));
+    await supabase.auth.signInWithProvider(Provider.google,
+        options: AuthOptions(
+          redirectTo: 'org.luxecraft.develove://login-callback/',
+        ));
 
     setState(() {
       _isLoading = false;
@@ -32,9 +33,10 @@ class _LoginViewState extends AuthState<LoginView> {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.github, options: AuthOptions(
-      redirectTo: 'org.luxecraft.develove://login-callback/',
-    ));
+    await supabase.auth.signInWithProvider(Provider.github,
+        options: AuthOptions(
+          redirectTo: 'org.luxecraft.develove://login-callback/',
+        ));
 
     setState(() {
       _isLoading = false;
@@ -88,10 +90,7 @@ class _LoginViewState extends AuthState<LoginView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (_) => HomeView()),
-                              (route) => false);
+                          _signInWithGithub();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -159,7 +158,10 @@ class _LoginViewState extends AuthState<LoginView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         onPressed: () {
-                          _signInWithGithub();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeView()),
+                              (route) => false);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
