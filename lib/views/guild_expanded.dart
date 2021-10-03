@@ -54,7 +54,30 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                           .map((e) => Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Expanded(child: Text(e)),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Material(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
+                                      color: Color(0xFF6ECD95),
+                                      child: Container(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            e,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                ?.apply(
+                                                  color: Colors.black,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ))
                           .toList(),

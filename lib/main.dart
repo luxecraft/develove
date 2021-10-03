@@ -7,11 +7,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Color(0xFF282828),
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light));
-
   await dotenv.load(fileName: ".env");
 
   await Supabase.initialize(
@@ -35,6 +30,10 @@ class App extends StatelessWidget {
           backgroundColor: Color(0xFF6ECD95),
         ),
         appBarTheme: AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+              systemNavigationBarColor: Color(0xFF282828),
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.light),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
         ),
@@ -46,6 +45,7 @@ class App extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.transparent,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          elevation: 10.0,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           backgroundColor: Color(0xFF282828),
