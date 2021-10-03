@@ -1,6 +1,6 @@
 import 'package:develove/components/auth_state.dart';
 import 'package:develove/utils/constants.dart';
-import 'package:develove/views/home_view.dart';
+import 'package:develove/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 import 'package:supabase_flutter/src/supabase_auth.dart';
@@ -13,15 +13,17 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends AuthState<LoginView> {
+  // ignore: unused_field
   bool _isLoading = false;
 
   Future<void> _signInWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.google, options: AuthOptions(
-      redirectTo: 'org.luxecraft.develove://login-callback/',
-    ));
+    await supabase.auth.signInWithProvider(Provider.google,
+        options: AuthOptions(
+          redirectTo: 'org.luxecraft.develove://login-callback/',
+        ));
 
     setState(() {
       _isLoading = false;
@@ -32,9 +34,10 @@ class _LoginViewState extends AuthState<LoginView> {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.github, options: AuthOptions(
-      redirectTo: 'org.luxecraft.develove://login-callback/',
-    ));
+    await supabase.auth.signInWithProvider(Provider.github,
+        options: AuthOptions(
+          redirectTo: 'org.luxecraft.develove://login-callback/',
+        ));
 
     setState(() {
       _isLoading = false;
@@ -53,7 +56,8 @@ class _LoginViewState extends AuthState<LoginView> {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(44.0),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.1),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -79,55 +83,43 @@ class _LoginViewState extends AuthState<LoginView> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Email"),
-                          SizedBox(height: 5),
-                          TextField(
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusColor: Colors.transparent,
-                              fillColor: Color(0xFF434343),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Confirmation Code"),
-                          SizedBox(height: 5),
-                          TextField(
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusColor: Colors.transparent,
-                              fillColor: Color(0xFF434343),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     children: [
+                      MaterialButton(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        onPressed: () {
+                          _signInWithGithub();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/GitHub.png",
+                                height: 24.0,
+                                width: 24.0,
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                  child: Text(
+                                "Sign in with Github",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    ?.apply(
+                                        color: Colors.black,
+                                        fontWeightDelta: 2),
+                              )),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16),
                       MaterialButton(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -167,7 +159,10 @@ class _LoginViewState extends AuthState<LoginView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         onPressed: () {
-                          _signInWithGithub();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeView()),
+                              (route) => false);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
