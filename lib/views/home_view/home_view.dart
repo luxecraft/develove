@@ -74,24 +74,28 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
+                activeIcon: Icon(Icons.home),
                 icon: Icon(
-                  Icons.home,
+                  Icons.home_outlined,
                 ),
                 label: "Home",
               ),
               BottomNavigationBarItem(
+                activeIcon: Icon(Icons.explore),
                 icon: Icon(
                   Icons.explore_outlined,
                 ),
                 label: "Explore",
               ),
               BottomNavigationBarItem(
+                activeIcon: Icon(Icons.groups),
                 icon: Icon(
                   Icons.groups_outlined,
                 ),
                 label: "Guilds",
               ),
               BottomNavigationBarItem(
+                activeIcon: Icon(Icons.account_circle),
                 icon: Icon(
                   Icons.account_circle_outlined,
                 ),
