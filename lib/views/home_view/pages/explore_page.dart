@@ -8,6 +8,7 @@ class ExplorePage extends StatelessWidget {
     return Column(
       children: [
         AppBar(
+          title: Text("Explore"),
           actions: [
             IconButton(
                 onPressed: () {
@@ -24,6 +25,24 @@ class ExplorePage extends StatelessWidget {
 }
 
 class CustomSearch extends SearchDelegate {
+  @override
+  InputDecorationTheme? get searchFieldDecorationTheme => InputDecorationTheme(
+        isDense: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(width: 1, color: Colors.grey)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(width: 1, color: Colors.grey)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(width: 1, color: Colors.grey)),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 4.0,
+        ),
+      );
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -53,6 +72,13 @@ class CustomSearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Container();
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Color(0xFF313131), Color(0xFF282828)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+      ),
+    );
   }
 }

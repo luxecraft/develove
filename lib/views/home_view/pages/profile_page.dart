@@ -9,6 +9,7 @@ class ProfilePage extends StatelessWidget {
     return Column(
       children: [
         AppBar(
+          title: Text("Profile"),
           actions: [
             IconButton(
               onPressed: () async {

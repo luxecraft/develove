@@ -21,7 +21,9 @@ class GuildListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AppBar(),
+        AppBar(
+          title: Text("Guilds"),
+        ),
         ListView.builder(
           physics: BouncingScrollPhysics(),
           shrinkWrap: true,

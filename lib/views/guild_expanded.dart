@@ -46,51 +46,65 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
               child: Container(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: Column(
-                    //placeholder
-                    children: messages.map((e) => Text(e)).toList(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      //placeholder
+                      children: messages
+                          .map((e) => Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Expanded(child: Text(e)),
+                                ],
+                              ))
+                          .toList(),
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
-              color: Color(0xFF474747),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          child: TextField(
-                            onSubmitted: sendMessage,
-                            controller: _messageEditingController,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 8.0,
-                                horizontal: 8.0,
+            Material(
+              elevation: 10.0,
+              child: Container(
+                color: Color(0xFF282828),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            child: TextField(
+                              keyboardType: TextInputType.multiline,
+                              onSubmitted: sendMessage,
+                              controller: _messageEditingController,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                  horizontal: 8.0,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                focusColor: Colors.transparent,
+                                hintText: "Message",
+                                isDense: true,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: BorderSide(color: Colors.grey)),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey)),
-                              focusColor: Colors.transparent,
-                              hintText: "Message",
-                              isDense: true,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey)),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.send_outlined),
-                      onPressed: () =>
-                          sendMessage(_messageEditingController.text),
-                    ),
-                  ],
+                      IconButton(
+                        icon: Icon(Icons.send_outlined),
+                        onPressed: () =>
+                            sendMessage(_messageEditingController.text),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )
