@@ -18,6 +18,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends AuthRequiredState<HomeView> {
   String? _userId;
   late int _currentPage;
+  PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -50,14 +51,24 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
-          child: [
-            HomePage(
-              userId: _userId,
-            ),
-            ExplorePage(),
-            GuildListPage(),
-            ProfilePage()
-          ][_currentPage],
+          child: PageView(
+            onPageChanged: (index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            controller: _pageController,
+            // physics: NeverScrollableScrollPhysics(),
+            physics: BouncingScrollPhysics(),
+            children: [
+              HomePage(
+                userId: _userId,
+              ),
+              ExplorePage(),
+              GuildListPage(),
+              ProfilePage()
+            ],
+          ),
         ),
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.only(
@@ -68,6 +79,7 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
             currentIndex: _currentPage,
             onTap: (index) {
               setState(() {
+                _pageController.jumpToPage(index);
                 _currentPage = index;
               });
             },

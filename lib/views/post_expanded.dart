@@ -6,12 +6,17 @@ class PostExpandedView extends StatelessWidget {
   final String title;
   const PostExpandedView({Key? key, required this.title}) : super(key: key);
 
-  final code = """class MyHomePage extends StatefulWidget { 
-        MyHomePage({Key key, this.title}) : super(key: key); 
-        final String title; 
-        
-        @override _MyHomePageState createState() => _MyHomePageState();
-}""";
+  final code = """# Python program to demonstrate working
+# of map.
+  
+# Return double of n
+def addition(n):
+    return n + n
+  
+# We double all numbers using map()
+numbers = (1, 2, 3, 4)
+result = map(addition, numbers)
+print(list(result))""";
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +41,14 @@ class PostExpandedView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      'Map Function',
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
+                    SizedBox(height: 10),
+                    Text(
+                      'map() function returns a map object(which is an iterator) of the results after applying the given function to each item of a given iterable (list, tuple etc.)',
+                    ),
+                    SizedBox(height: 10),
                     Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -49,7 +59,7 @@ class PostExpandedView extends StatelessWidget {
                           code,
                           padding: EdgeInsets.all(8.0),
                           tabSize: 4,
-                          language: 'dart',
+                          language: 'python',
                           theme: atomOneDarkReasonableTheme,
                         ),
                       ),

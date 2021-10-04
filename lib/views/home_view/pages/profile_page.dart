@@ -1,4 +1,6 @@
 import 'package:develove/utils/constants.dart';
+import 'package:develove/utils/signup_complete.dart';
+import 'package:develove/views/profile_edit_view.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -6,11 +8,21 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fetchUserData(
+      supabase.auth.currentUser?.email ?? "",
+    );
     return Column(
       children: [
         AppBar(
           title: Text("Profile"),
           actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ProfileEditView()));
+              },
+              icon: Icon(Icons.edit_outlined),
+            ),
             IconButton(
               onPressed: () async {
                 await supabase.auth.signOut();
