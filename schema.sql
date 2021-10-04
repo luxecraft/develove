@@ -3,7 +3,7 @@ CREATE TABLE "users" (
   "email" varchar,
   "fullName" varchar,
   "tags" varchar,
-  "uid" integer
+  "uid" integer primary key,
 );
 
 CREATE TABLE "guilds" (
@@ -18,8 +18,9 @@ CREATE TABLE "posts" (
   "title" varchar,
   "tags" varchar,
   "uid" integer,
-  "data" varchar,
+  "data" text,
   "hearts" integer
+  "pid" integer primary key
 );
 
 CREATE TABLE "gid" (
