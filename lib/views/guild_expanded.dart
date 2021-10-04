@@ -29,12 +29,14 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
   ];
   final TextEditingController _messageEditingController =
       TextEditingController();
+  bool isValidMessage = false;
 
   void sendMessage(String message) {
     setState(() {
       messages.add(Message(message: message, fromMe: true));
     });
     _messageEditingController.clear();
+    isValidMessage = false;
   }
 
   @override
@@ -115,7 +117,14 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                           child: SizedBox(
                             child: TextField(
                               keyboardType: TextInputType.multiline,
-                              onSubmitted: sendMessage,
+                              // onSubmitted: sendMessage,
+                              onChanged: (message) {
+                                if (messages.length > 0) {
+                                  setState(() => isValidMessage = true);
+                                } else {
+                                  setState(() => isValidMessage = false);
+                                }
+                              },
                               controller: _messageEditingController,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
@@ -138,7 +147,7 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                       ),
                       IconButton(
                         icon: Icon(Icons.send_outlined),
-                        onPressed: _messageEditingController.text.isNotEmpty
+                        onPressed: isValidMessage
                             ? () => sendMessage(_messageEditingController.text)
                             : null,
                       ),
