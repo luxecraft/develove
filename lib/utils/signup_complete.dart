@@ -19,4 +19,5 @@ Future<void> fetchUserData(String email) async {
       .filter('email', 'eq', email)
       .execute();
   print(res.data);
+  print(res.error);
 }
