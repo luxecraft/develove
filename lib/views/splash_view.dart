@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends AuthState<SplashScreen>  {
+class _SplashScreenState extends AuthState<SplashScreen> {
   @override
   void initState() {
     recoverSupabaseSession();
@@ -60,7 +60,6 @@ class _SplashScreenState extends AuthState<SplashScreen>  {
                   DotsIndicator(
                     controller: _pageController,
                     itemCount: _pages.length,
-                    onPageSelected: (index) {},
                     color: Color(0xFF57AF70),
                   ),
                   Row(
@@ -130,7 +129,8 @@ class SplashPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -161,7 +161,8 @@ class SplashPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -195,7 +196,8 @@ class SplashPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -229,7 +231,8 @@ class SplashPage4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 44.0),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -261,13 +264,11 @@ class DotsIndicator extends AnimatedWidget {
   DotsIndicator({
     required this.controller,
     required this.itemCount,
-    required this.onPageSelected,
     this.color: Colors.white,
   }) : super(listenable: controller);
 
   final PageController controller;
   final int itemCount;
-  final ValueChanged<int> onPageSelected;
   final Color color;
   static const double _kDotSize = 8.0;
   static const double _kMaxZoom = 2.0;
@@ -281,18 +282,16 @@ class DotsIndicator extends AnimatedWidget {
       ),
     );
     double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedness;
-    return new Container(
+    return Container(
       width: _kDotSpacing,
-      child: new Center(
-        child: new Material(
+      child: Center(
+        child: Material(
           color: color,
           type: MaterialType.circle,
-          child: new Container(
+          child: Container(
             width: _kDotSize * zoom,
             height: _kDotSize * zoom,
-            child: new InkWell(
-              onTap: () => onPageSelected(index),
-            ),
+            child: Container(),
           ),
         ),
       ),
@@ -300,9 +299,9 @@ class DotsIndicator extends AnimatedWidget {
   }
 
   Widget build(BuildContext context) {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: new List<Widget>.generate(itemCount, _buildDot),
+      children: List<Widget>.generate(itemCount, _buildDot),
     );
   }
 }
