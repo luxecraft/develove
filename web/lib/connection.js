@@ -53,3 +53,12 @@ export async function getConnections() {
 }
 
 export async function pendingConnections() {}
+
+export async function searchConnections() {
+  let res = await supabase.from("users").select("uid").match({ email: email });
+  if (res.data.length == 0) {
+    return -1;
+  } else {
+    return res.data[0]["uid"];
+  }
+}
