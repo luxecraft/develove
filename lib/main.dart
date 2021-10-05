@@ -9,9 +9,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xFF282828),
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light),
+      systemNavigationBarColor: Color(0xFF282828),
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
+    ),
   );
   await dotenv.load(fileName: ".env");
 
@@ -37,9 +39,11 @@ class App extends StatelessWidget {
         ),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
-              systemNavigationBarColor: Color(0xFF282828),
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.light),
+            systemNavigationBarColor: Color(0xFF282828),
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.dark,
+          ),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
         ),
