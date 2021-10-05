@@ -3,8 +3,8 @@ import { Dummy } from "../components/dummy";
 
 export default function Home() {
   return (
-    <AuthProvider>
+    <div>
       <Dummy />
-    </AuthProvider>
+    </div>
   );
 }
