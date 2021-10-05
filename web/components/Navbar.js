@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "../lib/auth";
 
 export default function Navbar() {
+  const { currentUser } = useAuth();
   return (
     <div className="p-5 flex">
       <Image src="/logo.svg" alt="Logo" height={50} width={50} />
@@ -13,8 +15,10 @@ export default function Navbar() {
         <Link href="/guilds">
           <a className="text-white mx-10 font-semibold">Guilds</a>
         </Link>
-        <Link href="/profile">
-          <a className="text-white mx-10 font-semibold">Profile</a>
+        <Link href={currentUser ? "/profile" : "/signup"}>
+          <a className="text-white mx-10 font-semibold">
+            {currentUser ? "Profile" : "Sign up"}
+          </a>
         </Link>
       </div>
     </div>
