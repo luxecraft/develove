@@ -65,7 +65,7 @@ export async function pendingConnections() {
   return res.data;
 }
 
-export async function searchConnections(email) {
+export async function searchUsers(email) {
   let res = await supabase.from("users").select("uid").match({ email: email });
   if (res.data.length == 0) {
     return -1;
