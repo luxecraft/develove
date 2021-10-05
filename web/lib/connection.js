@@ -52,7 +52,18 @@ export async function getConnections() {
   return res.data;
 }
 
-export async function pendingConnections() {}
+export async function pendingConnections() {
+  let currentUser = supabase.auth.user().email;
+  let userRes = await supabase
+    .from("users")
+    .select("uid")
+    .match({ email: currentUser });
+  let res = await supabase
+    .from("connections")
+    .select()
+    .match({ tid: userRes.data[0]["uid"] });
+  return res.data;
+}
 
 export async function searchConnections() {
   let res = await supabase.from("users").select("uid").match({ email: email });
