@@ -90,6 +90,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.2"
+  flutter_highlight:
+    dependency: "direct main"
+    description:
+      name: flutter_highlight
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -107,6 +114,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
+  highlight:
+    dependency: transitive
+    description:
+      name: highlight
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   hive:
     dependency: transitive
     description:

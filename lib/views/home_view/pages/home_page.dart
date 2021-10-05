@@ -1,3 +1,4 @@
+import 'package:develove/views/post_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -44,14 +45,62 @@ class HomePage extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: 10,
-              itemBuilder: (_, __) => SizedBox(
-                height: 200,
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 1.0, color: Colors.grey))),
-                  padding: EdgeInsets.all(16.0),
-                  child: Text("Placeholder"),
+              itemBuilder: (_, __) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PostExpandedView(title: "Placeholder")));
+                },
+                child: SizedBox(
+                  height: 200,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom:
+                                BorderSide(width: 1.0, color: Colors.grey))),
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Placeholder"),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                                padding: EdgeInsets.zero,
+                                splashRadius: 0.1,
+                                iconSize: 20,
+                                onPressed: () {},
+                                icon: Icon(Icons.favorite_border)),
+                            IconButton(
+                                padding: EdgeInsets.zero,
+                                splashRadius: 0.1,
+                                iconSize: 20,
+                                onPressed: () {},
+                                icon: Icon(Icons.chat_bubble_outline)),
+                            IconButton(
+                                padding: EdgeInsets.zero,
+                                splashRadius: 0.1,
+                                iconSize: 20,
+                                onPressed: () {},
+                                icon: Icon(Icons.keyboard_arrow_up)),
+                            IconButton(
+                              padding: EdgeInsets.zero,
+                              splashRadius: 0.1,
+                              iconSize: 20,
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.keyboard_arrow_down,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

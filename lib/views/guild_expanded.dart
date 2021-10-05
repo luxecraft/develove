@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+class Message {
+  String message;
+  bool fromMe;
+
+  Message({required this.message, required this.fromMe});
+}
+
 class GuildExpandedView extends StatefulWidget {
   final String name;
   final String id;
@@ -15,15 +22,21 @@ class GuildExpandedView extends StatefulWidget {
 }
 
 class _GuildExpandedViewState extends State<GuildExpandedView> {
-  List<String> messages = ["hai", "hiiiii", "What's up"];
+  List<Message> messages = [
+    Message(message: "hai", fromMe: false),
+    Message(message: "hiiiii", fromMe: true),
+    Message(message: "What's up", fromMe: false),
+  ];
   final TextEditingController _messageEditingController =
       TextEditingController();
+  bool isValidMessage = false;
 
   void sendMessage(String message) {
     setState(() {
-      messages.add(message);
+      messages.add(Message(message: message, fromMe: true));
     });
     _messageEditingController.clear();
+    isValidMessage = false;
   }
 
   @override
@@ -52,7 +65,9 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                       //placeholder
                       children: messages
                           .map((e) => Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: e.fromMe
+                                    ? MainAxisAlignment.end
+                                    : MainAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -61,12 +76,14 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                                         borderRadius:
                                             BorderRadius.circular(15.0),
                                       ),
-                                      color: Color(0xFF6ECD95),
+                                      color: e.fromMe
+                                          ? Color(0xFF6ECD95)
+                                          : Colors.white,
                                       child: Container(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            e,
+                                            e.message,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1
@@ -100,7 +117,14 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                           child: SizedBox(
                             child: TextField(
                               keyboardType: TextInputType.multiline,
-                              onSubmitted: sendMessage,
+                              // onSubmitted: sendMessage,
+                              onChanged: (message) {
+                                if (messages.length > 0) {
+                                  setState(() => isValidMessage = true);
+                                } else {
+                                  setState(() => isValidMessage = false);
+                                }
+                              },
                               controller: _messageEditingController,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
@@ -123,8 +147,9 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
                       ),
                       IconButton(
                         icon: Icon(Icons.send_outlined),
-                        onPressed: () =>
-                            sendMessage(_messageEditingController.text),
+                        onPressed: isValidMessage
+                            ? () => sendMessage(_messageEditingController.text)
+                            : null,
                       ),
                     ],
                   ),
