@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../lib/auth";
+import { updateUser } from "../lib/signupComplete";
 
 export default function OnBoarding() {
   const [userObject, setUserObject] = useState({
@@ -12,13 +13,18 @@ export default function OnBoarding() {
     setUserObject({ ...userObject, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    let tagsToBeSent = [];
+    tagsToBeSent = userObject.tags.split(",");
+    console.log(tagsToBeSent);
+    console.log(userObject);
+    await updateUser(userObject.fullName, tagsToBeSent, userObject.username);
   };
 
   return (
     <div className="block text-center">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="my-5">
           <input
             name="fullName"

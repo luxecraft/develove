@@ -12,6 +12,9 @@ export default function Navbar() {
         <Link href="/">
           <a className="text-white mx-10 font-semibold">Feed</a>
         </Link>
+        <Link href="/explore">
+          <a className="text-white mx-10 font-semibold">Explore</a>
+        </Link>
         <Link href="/guilds">
           <a className="text-white mx-10 font-semibold">Guilds</a>
         </Link>
