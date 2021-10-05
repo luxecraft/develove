@@ -58,16 +58,14 @@ Future<void> acceptConnection(int tid) async {
   print(res.data);
 }
 
-Future<int> searchConnection(String email) async {
-  var res =
-      await supabase.from('users').select().match({'email': email}).execute();
+Future<int?> searchConnection(String email) async {
+  var res = await supabase
+      .from('users')
+      .select('uid')
+      .match({'email': email}).execute();
   print(res.data);
-  if (res.data == null) {
-    // returns -1 if no user found
-    return -1;
-  }
   // returns the user id if found
-  return res.data[0]['uid'];
+  return (res.data as List<dynamic>).isNotEmpty ? res.data[0]['uid'] : null;
 }
 
 Future<Map<String, dynamic>> getConnections() async {
@@ -80,15 +78,11 @@ Future<Map<String, dynamic>> getConnections() async {
     'fid': userRes.data[0]['uid'],
     'connected': true,
   };
-  var res = await supabase
-      .from('connections')
-      .select()
-      .match(data)
-      .execute();
+  var res = await supabase.from('connections').select().match(data).execute();
   return res.data;
 }
 
-Future<Map<String, dynamic>> pendingConnections() async {
+Future<List<dynamic>> pendingConnections() async {
   var currentUser = await supabase.auth.currentUser!.email;
   var userRes = await supabase
       .from('users')
@@ -98,10 +92,6 @@ Future<Map<String, dynamic>> pendingConnections() async {
     'tid': userRes.data[0]['uid'],
     'connected': false,
   };
-  var res = await supabase
-      .from('connections')
-      .select()
-      .match(data)
-      .execute();
+  var res = await supabase.from('connections').select().match(data).execute();
   return res.data;
 }
