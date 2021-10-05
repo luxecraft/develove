@@ -89,3 +89,8 @@ export async function rejectConnection(tid) {
   print(userRes.data);
   print(res.data);
 }
+
+export async function getUser(tid) {
+  let res = await supabase.from("users").select().match({ uid: tid });
+  return res.data[0];
+}
