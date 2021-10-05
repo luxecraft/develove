@@ -3,10 +3,10 @@ import 'package:supabase/supabase.dart';
 
 import 'package:develove/components/auth_required.dart';
 
-import 'package:develove/views/home_view/pages/explore_page.dart';
-import 'package:develove/views/home_view/pages/guilds_list_page.dart';
+import 'package:develove/views/home_view/pages/explore/explore_page.dart';
+import 'package:develove/views/home_view/pages/guilds/guilds_list_page.dart';
 import 'package:develove/views/home_view/pages/home_page.dart';
-import 'package:develove/views/home_view/pages/profile_page.dart';
+import 'package:develove/views/home_view/pages/profile/profile_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);

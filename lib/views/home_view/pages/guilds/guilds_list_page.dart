@@ -1,4 +1,4 @@
-import 'package:develove/views/guild_expanded.dart';
+import 'package:develove/views/home_view/pages/guilds/guild_expanded.dart';
 import 'package:flutter/material.dart';
 
 class Guild {

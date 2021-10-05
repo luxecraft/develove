@@ -1,6 +1,7 @@
 import 'package:develove/models/user.dart';
 import 'package:develove/utils/connection.dart';
 import 'package:develove/utils/constants.dart';
+import 'package:develove/views/home_view/pages/explore/connection_view.dart';
 import 'package:flutter/material.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -8,12 +9,17 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getPendigConnection();
     return Column(
       children: [
         AppBar(
           title: Text("Explore"),
           actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ConnectionView()));
+                },
+                icon: Icon(Icons.person_add_outlined)),
             IconButton(
               onPressed: () {
                 showSearch(context: context, delegate: CustomSearch(context));
@@ -51,7 +57,7 @@ class CustomSearch extends SearchDelegate {
         ),
       );
   @override
-  TextStyle? get searchFieldStyle => Theme.of(context).textTheme.bodyText1;
+  TextStyle? get searchFieldStyle => TextStyle(fontSize: 10.0);
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -116,16 +122,26 @@ class CustomSearch extends SearchDelegate {
                                                 Text('@${data.userName}'),
                                               ],
                                             ),
-                                            supabase.auth.currentUser?.email !=
-                                                    data.email
-                                                ? OutlinedButton(
-                                                    onPressed: () async {
-                                                      await newConnection(
-                                                          data.uid);
-                                                    },
-                                                    child: Text("Connect"),
-                                                  )
-                                                : Container(),
+                                            FutureBuilder(
+                                                future: isConnected(data.uid),
+                                                builder: (context, snapshot) {
+                                                  if (snapshot.hasData &&
+                                                      supabase.auth.currentUser
+                                                              ?.email !=
+                                                          data.email &&
+                                                      !(snapshot.data
+                                                          as bool)) {
+                                                    return OutlinedButton(
+                                                      onPressed: () async {
+                                                        await newConnection(
+                                                            data.uid);
+                                                      },
+                                                      child: Text("Connect"),
+                                                    );
+                                                  } else {
+                                                    return Container();
+                                                  }
+                                                }),
                                           ],
                                         ),
                                       ),
@@ -213,7 +229,13 @@ Future<User?> getUserInfo(String email) async {
   }
 }
 
-Future<void> getPendigConnection() async {
-  final pendingCons = await pendingConnections();
-  print(pendingCons);
+Future<User?> getUserInfoById(int id) async {
+  final res =
+      await supabase.from('users').select().filter('uid', 'eq', id).execute();
+  final data = res.data[0];
+  return User(
+      email: data['email'],
+      uid: data['uid'],
+      userName: data['username'],
+      fullName: data['fullName']);
 }
