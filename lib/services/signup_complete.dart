@@ -1,4 +1,4 @@
-import 'package:develove/utils/constants.dart';
+import 'package:develove/services/constants.dart';
 
 Future<void> updateUser(
     String fullName, List<String> tags, String? username) async {

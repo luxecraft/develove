@@ -1,5 +1,5 @@
-import 'package:develove/components/auth_state.dart';
-import 'package:develove/utils/constants.dart';
+import 'package:develove/services/auth_state.dart';
+import 'package:develove/services/constants.dart';
 import 'package:develove/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';

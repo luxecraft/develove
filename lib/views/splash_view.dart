@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:develove/views/login_view.dart';
 import 'package:flutter/material.dart';
-import 'package:develove/components/auth_state.dart';
+import 'package:develove/services/auth_state.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
