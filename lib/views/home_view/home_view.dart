@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 
-import 'package:develove/components/auth_required.dart';
+import 'package:develove/services/auth_required.dart';
 
 import 'package:develove/views/home_view/pages/explore/explore_page.dart';
 import 'package:develove/views/home_view/pages/guilds/guilds_list_page.dart';

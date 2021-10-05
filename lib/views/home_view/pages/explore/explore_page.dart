@@ -1,6 +1,6 @@
 import 'package:develove/models/user.dart';
-import 'package:develove/utils/connection.dart';
-import 'package:develove/utils/constants.dart';
+import 'package:develove/services/connection.dart';
+import 'package:develove/services/constants.dart';
 import 'package:develove/views/home_view/pages/explore/connection_view.dart';
 import 'package:flutter/material.dart';
 

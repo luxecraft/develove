@@ -1,5 +1,5 @@
-import 'package:develove/utils/constants.dart';
-import 'package:develove/utils/signup_complete.dart';
+import 'package:develove/services/constants.dart';
+import 'package:develove/services/signup_complete.dart';
 import 'package:develove/views/home_view/pages/profile/connection_list_view.dart';
 import 'package:develove/views/home_view/pages/profile/profile_edit_view.dart';
 import 'package:flutter/material.dart';

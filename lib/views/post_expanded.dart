@@ -1,10 +1,11 @@
+import 'package:develove/models/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/atom-one-dark-reasonable.dart';
 
 class PostExpandedView extends StatelessWidget {
-  final String title;
-  const PostExpandedView({Key? key, required this.title}) : super(key: key);
+  final Post post;
+  const PostExpandedView(this.post, {Key? key}) : super(key: key);
 
   final code = """# Python program to demonstrate working
 # of map.
@@ -41,12 +42,12 @@ print(list(result))""";
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Map Function',
-                      style: Theme.of(context).textTheme.subtitle1,
+                      post.title,
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'map() function returns a map object(which is an iterator) of the results after applying the given function to each item of a given iterable (list, tuple etc.)',
+                      post.content,
                     ),
                     SizedBox(height: 10),
                     Card(
@@ -64,6 +65,38 @@ print(list(result))""";
                         ),
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            splashRadius: 15,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite_border)),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            splashRadius: 15,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.chat_bubble_outline)),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            splashRadius: 15,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.keyboard_arrow_up)),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          splashRadius: 15,
+                          iconSize: 20,
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

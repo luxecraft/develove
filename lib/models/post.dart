@@ -1,3 +1,6 @@
+import 'package:develove/services/posts.dart';
+import 'package:flutter/foundation.dart';
+
 class Post {
   int pid;
   int uid;
@@ -13,4 +16,15 @@ class Post {
       required this.content,
       required this.hearts,
       required this.tags});
+}
+
+class PostModel extends ChangeNotifier {
+  List<Post> posts = [];
+
+  PostModel(this.posts);
+
+  fetchPosts() async {
+    posts = await PostServices.getPosts();
+    notifyListeners();
+  }
 }

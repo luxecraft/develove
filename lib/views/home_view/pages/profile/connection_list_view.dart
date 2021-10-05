@@ -1,5 +1,5 @@
 import 'package:develove/models/user.dart';
-import 'package:develove/utils/connection.dart';
+import 'package:develove/services/connection.dart';
 import 'package:develove/views/home_view/pages/explore/explore_page.dart';
 import 'package:flutter/material.dart';
 
