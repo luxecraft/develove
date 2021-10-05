@@ -62,3 +62,19 @@ export async function searchConnections() {
     return res.data[0]["uid"];
   }
 }
+
+export async function rejectConnection(tid) {
+  let currentUser = supabase.auth.user().email;
+  let userRes = await supabase
+    .from("users")
+    .select("uid")
+    .match({ email: currentUser });
+  const data = {
+    fid: userRes.data[0]["uid"],
+    tid: tid,
+  };
+
+  let res = await supabase.from("connections").delete().match(data);
+  print(userRes.data);
+  print(res.data);
+}
