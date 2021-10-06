@@ -1,7 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+const checkLocalStorage = () => {
+  const ls = localStorage.getItem("guildOnBoard");
+  if (ls === null || ls === "true") {
+    return true;
+  } else if (ls === "false") {
+    return false;
+  }
+};
 
 export default function Guilds() {
-  const [guildOnBoarding, setGuildOnBoarding] = useState(true);
+  const [guildOnBoarding, setGuildOnBoarding] = useState(true); //Change state to checkLocalStorage()
+
+  const handleGuildOnBoarding = () => {
+    setGuildOnBoarding(false);
+    localStorage.setItem("guildOnBoard", false);
+  };
+
+  useEffect(() => {
+    console.log(localStorage.getItem("guildOnBoard"));
+  }, []);
 
   if (guildOnBoarding)
     return (
@@ -20,7 +38,7 @@ export default function Guilds() {
           </p>
 
           <button
-            onClick={() => setGuildOnBoarding(false)}
+            onClick={() => handleGuildOnBoarding()}
             className="mt-20 w-1/4 h-20 bg-gradient-to-br from-primary-start to-primary-end rounded-lg shadow-lg"
           >
             <div className="flex items-center justify-center">
