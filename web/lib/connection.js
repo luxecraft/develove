@@ -15,6 +15,11 @@ export async function newConnection(tid) {
   console.log(res.data);
 }
 
+export async function getCurrentUser(email) {
+  let userRes = await supabase.from("users").select().match({ email: email });
+  return userRes.data[0];
+}
+
 export async function acceptConnection(tid) {
   let currentUser = supabase.auth.user().email;
   let userRes = await supabase
