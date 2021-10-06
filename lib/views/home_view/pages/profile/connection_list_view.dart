@@ -1,6 +1,6 @@
 import 'package:develove/models/user.dart';
-import 'package:develove/services/connection.dart';
-import 'package:develove/views/home_view/pages/explore/explore_page.dart';
+import 'package:develove/services/supabase/connection.dart';
+import 'package:develove/services/user.dart';
 import 'package:flutter/material.dart';
 
 class ConnectionListView extends StatelessWidget {

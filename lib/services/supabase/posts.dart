@@ -1,5 +1,5 @@
 import 'package:develove/models/post.dart';
-import 'package:develove/services/constants.dart';
+import 'package:develove/services/supabase/constants.dart';
 
 class PostServices {
   static Future<List<Post>> getPosts() async {
@@ -8,15 +8,7 @@ class PostServices {
     print(res.status);
     for (int i = 0; i < res.data.length; i++) {
       final data = res.data[i];
-      posts.add(Post(
-          pid: data['pid'],
-          uid: data['uid'],
-          title: data['title'],
-          content: data['data'],
-          hearts: data['hearts'],
-          tags: (data['tags'] as List<dynamic>)
-              .map((e) => e.toString())
-              .toList()));
+      posts.add(Post.fromJson(data));
     }
     return posts;
   }

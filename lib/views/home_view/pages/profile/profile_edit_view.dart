@@ -1,4 +1,4 @@
-import 'package:develove/services/signup_complete.dart';
+import 'package:develove/services/supabase/auth/signup_complete.dart';
 import 'package:flutter/material.dart';
 
 class ProfileEditView extends StatefulWidget {
