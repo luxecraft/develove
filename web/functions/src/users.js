@@ -10,7 +10,7 @@ module.exports = functions.https.onRequest((req, res) => {
         protocol: "https",
       },
     ],
-    apiKey: "TPBbQ8qrVfkokxdno0Xt8GakbmH26Wkcjy15VhMPnK3jlNR4",
+    apiKey: functions.config().typesense.api_key,
     connectionTimeoutSeconds: 120,
     retryIntervalSeconds: 120,
   });
