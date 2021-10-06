@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class User {
   late int uid;
   late String? fullName;

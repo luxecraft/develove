@@ -33,7 +33,7 @@ class MessageModel extends ChangeNotifier {
   MessageModel({required this.guildId, required this.messages});
 
   Future<void> updateMessages() async {
-    messages = await fetchMessages(guildId) as List<Message>;
+    messages = await fetchMessages(guildId);
     notifyListeners();
   }
 }
