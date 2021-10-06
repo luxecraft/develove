@@ -17,7 +17,7 @@ module.exports = {
       },
       white: "#FFFFFF",
       black: "#000000",
-      accentGray: "#474747",
+      accentGray: "#1F1F1F",
     },
     extend: {},
   },
