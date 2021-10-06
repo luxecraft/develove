@@ -1,21 +1,14 @@
-/* eslint-disable quote-props */
 module.exports = {
-  sourceType: "module",
   root: true,
   env: {
     es6: true,
     node: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "google",
-  ],
-  plugins: ["import"],
+  extends: ["eslint:recommended", "google"],
   rules: {
     quotes: ["error", "double"],
-    "import/no-unresolved": 0,
+    "object-curly-spacing": "off",
+    "quote-props": "off",
+    indent: ["error", 2, { SwitchCase: 1 }],
   },
 };
