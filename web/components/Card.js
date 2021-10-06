@@ -45,7 +45,7 @@ export default function Card({ hit }) {
                   error: "Could not connect to server",
                 });
               }}
-              className="bg-primary-solid hover:bg-opacity-70 text-white font-bold py-2 px-10 rounded-lg"
+              className=" bg-gradient-to-tr from-primary-start to-primary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
             >
               Connect
             </button>
