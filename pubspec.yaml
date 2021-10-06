@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^2.0.8
   supabase: ^0.2.7
   supabase_flutter: ^0.2.8
+  typesense: ^0.1.1
 
 dev_dependencies:
   flutter_test:
