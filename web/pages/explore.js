@@ -12,10 +12,12 @@ export default function Explore() {
     if (res == -1) {
       console.log("nope");
       seterror(true);
+      setUser({});
     } else {
       let res2 = await getUser(res);
       console.log(res2);
       setUser(res2);
+      seterror(false);
     }
   };
 
