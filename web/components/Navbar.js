@@ -9,7 +9,7 @@ export default function Navbar() {
     <div className="p-5 flex items-center">
       <Link href="/splash">
         <a className="">
-          <Image src="/logo.svg" alt="Logo" height={50} width={50} />
+          <Image src="/icon.png" alt="Logo" height={50} width={50} />
         </a>
       </Link>
       <div className="flex justify-center w-screen px-10 my-10 items-center">
