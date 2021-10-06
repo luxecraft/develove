@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div>
       <div className="flex items-center justify-center">
-        <SearchBar />
+        {/* <SearchBar /> */}
       </div>
       <div className="flex items-center justify-center">
-        <Feed className="flex" />
+        {/* <Feed className="flex" /> */}
       </div>
     </div>
   );
