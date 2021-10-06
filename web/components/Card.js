@@ -7,6 +7,7 @@ export default function Card({ hit }) {
   return (
     <div className="bg-accentGray mx-10 flex rounded-xl my-5 shadow-lg p-10 text-white font-medium">
       <Image
+        className="pr-20"
         src={
           "https://avatars.dicebear.com/api/miniavs/" + user.username + ".svg"
         }
@@ -14,7 +15,7 @@ export default function Card({ hit }) {
         height="120"
         width="120"
       />
-      <div>
+      <div className="ml-10">
         <h1 className="text-4xl font-mono font-semibold">{user.fullName}</h1>
         <h1 className="text-md mt-1 font-bold opacity-80">@{user.username}</h1>
         <h1 className="text-md mt-1 font-light opacity-80">{user.email}</h1>
@@ -31,7 +32,7 @@ export default function Card({ hit }) {
               );
           })}
         </div>
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-end mt-8">
           <button
             onClick={() => {
               toast.promise(newConnection(user.uid), {
@@ -40,7 +41,7 @@ export default function Card({ hit }) {
                 error: "Could not connect to server",
               });
             }}
-            className="bg-primary-solid text-white font-bold py-1 px-6 rounded-full"
+            className="bg-primary-solid hover:bg-opacity-70 text-white font-bold py-2 px-10 rounded-lg"
           >
             Connect
           </button>

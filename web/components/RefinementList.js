@@ -8,18 +8,14 @@ const RefinementList = ({
   searchForItems,
   createURL,
 }) => (
-  <ul>
-    <li>
-      <input
-        type="search"
-        onChange={(event) => searchForItems(event.currentTarget.value)}
-      />
-    </li>
+  <ul className="flex justify-center mt-10">
+    <span className="text-white font-bold">Filter By:</span>
     {items.map((item) => (
-      <li key={item.label}>
+      <span key={item.label}>
         <a
+          className="text-xs text-white font-medium font-mono bg-primary-end bg-opacity-50 border-primary-start border-2 rounded-full px-3 py-2 mx-2 hover:bg-opacity-80"
           href={createURL(item.value)}
-          style={{ fontWeight: item.isRefined ? "bold" : "" }}
+          style={{ backgroundColor: item.isRefined ? "#59AF77" : "" }}
           onClick={(event) => {
             event.preventDefault();
             refine(item.value);
@@ -32,7 +28,7 @@ const RefinementList = ({
           )}{" "}
           ({item.count})
         </a>
-      </li>
+      </span>
     ))}
   </ul>
 );

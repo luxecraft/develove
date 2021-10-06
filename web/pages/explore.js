@@ -28,8 +28,8 @@ export default function Explore() {
   return (
     <div>
       <InstantSearch indexName="users" searchClient={searchClient}>
-        <CustomSearchBox />
-        {/* <RefinementList attribute={"tags"} /> */}
+        <CustomSearchBox placeholder="Search anyone 🧔🏽‍♂️" />
+        <CustomRefinementList attribute={"tags"} />
         <div className="flex items-center justify-center">
           <CustomHitList />
         </div>
