@@ -82,4 +82,4 @@ app.*.map.json
 **/.vercel
 
 # scripts
-**/scripts
+scripts/**
