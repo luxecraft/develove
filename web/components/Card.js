@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { newConnection } from "../lib/connection";
+import toast from "react-hot-toast";
 export default function Card({ hit }) {
   const user = hit;
   return (
@@ -30,7 +32,16 @@ export default function Card({ hit }) {
           })}
         </div>
         <div className="flex justify-end mt-4">
-          <button className="bg-primary-solid text-white font-bold py-1 px-6 rounded-full">
+          <button
+            onClick={() => {
+              toast.promise(newConnection(user.uid), {
+                loading: "Loading",
+                success: "Connection request sent",
+                error: "Could not connect to server",
+              });
+            }}
+            className="bg-primary-solid text-white font-bold py-1 px-6 rounded-full"
+          >
             Connect
           </button>
         </div>

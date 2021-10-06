@@ -35,8 +35,8 @@ export async function acceptConnection(tid) {
     connected: true,
   };
   res = await supabase.from("connections").insert(data);
-  print(userRes.data);
-  print(res.data);
+  console.log(userRes.data);
+  console.log(res.data);
 }
 
 export async function getConnections() {
@@ -86,8 +86,8 @@ export async function rejectConnection(tid) {
   };
 
   let res = await supabase.from("connections").delete().match(data);
-  print(userRes.data);
-  print(res.data);
+  console.log(userRes.data);
+  console.log(res.data);
 }
 
 export async function getUser(tid) {
