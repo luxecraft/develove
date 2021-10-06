@@ -9,7 +9,7 @@ export default function Navbar() {
     <div className="p-5 flex">
       <Image src="/logo.svg" alt="Logo" height={50} width={50} />
       <div className="flex justify-end w-screen px-10 items-center">
-        <Link href="/">
+        <Link href="/home">
           <a className="text-white mx-10 font-semibold">Feed</a>
         </Link>
         <Link href="/explore">
