@@ -66,26 +66,58 @@ class ProfilePage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.green,
-                                  radius: 45,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                      child: FutureBuilder(
-                                          future: getUserAvatar(supabase
-                                              .auth.currentUser!.email!),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.connectionState ==
-                                                ConnectionState.done) {
-                                              return SvgPicture.string(
-                                                  snapshot.data as String);
-                                            } else {
-                                              return CircularProgressIndicator();
-                                            }
-                                          }),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.green,
+                                      radius: 45,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                          child: FutureBuilder(
+                                              future: getUserAvatar(supabase
+                                                  .auth.currentUser!.email!),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.done) {
+                                                  return SvgPicture.string(
+                                                      snapshot.data as String);
+                                                } else {
+                                                  return CircularProgressIndicator();
+                                                }
+                                              }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(width: 10),
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            "Tags",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle1,
+                                          ),
+                                          SizedBox(height: 5),
+                                          Row(
+                                            children:
+                                                user.tags.map((String tag) {
+                                              print(tag);
+                                              return Card(
+                                                color: Color(0xFF282828),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(tag),
+                                                ),
+                                              );
+                                            }).toList(),
+                                          )
+                                        ])
+                                  ],
                                 ),
                                 SizedBox(height: 10),
                                 Row(
