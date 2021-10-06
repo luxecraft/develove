@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import ExploreCards from "../components/Explore";
-import SearchBar from "../components/SearchBar";
+import { InstantSearch } from "react-instantsearch-core";
+import CustomRefinementList from "../components/RefinementList";
+import CustomHitList from "../components/HitList";
+import CustomSearchBox from "../components/SearchBar";
 import { getUser, searchUsers } from "../lib/connection";
+import searchClient from "../lib/typesense";
+import { RefinementList } from "react-instantsearch-dom";
 
 export default function Explore() {
   const [user, setUser] = useState({});
@@ -23,10 +27,13 @@ export default function Explore() {
 
   return (
     <div>
-      <SearchBar handleSubmit={(query) => searchExplore(query)} />
-      <div className="flex items-center justify-center">
-        <ExploreCards data={user} error={error} />
-      </div>
+      <InstantSearch indexName="users" searchClient={searchClient}>
+        <CustomSearchBox />
+        {/* <RefinementList attribute={"tags"} /> */}
+        <div className="flex items-center justify-center">
+          <CustomHitList />
+        </div>
+      </InstantSearch>
     </div>
   );
 }
