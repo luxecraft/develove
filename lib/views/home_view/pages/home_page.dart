@@ -1,8 +1,9 @@
 import 'package:develove/models/post.dart';
-import 'package:develove/services/posts.dart';
+import 'package:develove/services/supabase/posts.dart';
 import 'package:develove/views/post_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,6 +27,7 @@ class HomePage extends StatelessWidget {
                         physics: BouncingScrollPhysics(),
                         headerSliverBuilder: (context, isScrolled) => [
                           SliverAppBar(
+                            elevation: 1.0,
                             systemOverlayStyle: SystemUiOverlayStyle(
                                 statusBarColor:
                                     Color(0xFF313131).withOpacity(0.9)),
@@ -52,79 +54,95 @@ class HomePage extends StatelessWidget {
                               itemBuilder: (_, position) {
                                 final post = Provider.of<PostModel>(context)
                                     .posts[position];
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                PostExpandedView(post)));
-                                  },
-                                  child: SizedBox(
-                                    // height: 200,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: 1.0,
-                                                  color: Colors.grey))),
-                                      padding: EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            post.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6,
-                                          ),
-                                          SizedBox(height: 10),
-                                          Text(
-                                            post.content,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 5,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                return SizedBox(
+                                  // height: 200,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: 1.0,
+                                                color: Colors.grey))),
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PostExpandedView(
+                                                            post)));
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  splashRadius: 15,
-                                                  iconSize: 20,
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                      Icons.favorite_border)),
-                                              IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  splashRadius: 15,
-                                                  iconSize: 20,
-                                                  onPressed: () {},
-                                                  icon: Icon(Icons
-                                                      .chat_bubble_outline)),
-                                              IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  splashRadius: 15,
-                                                  iconSize: 20,
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                      Icons.keyboard_arrow_up)),
-                                              IconButton(
+                                              Text(
+                                                post.title,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6,
+                                              ),
+                                              SizedBox(height: 10),
+                                              Markdown(
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                padding: EdgeInsets.zero,
+                                                data: post.content,
+                                                shrinkWrap: true,
+                                              ),
+                                              SizedBox(height: 10),
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconButton(
+                                                padding: EdgeInsets.zero,
+                                                splashRadius: 15,
+                                                iconSize: 20,
+                                                onPressed: () {},
+                                                icon: Row(
+                                                  children: [
+                                                    Icon(Icons.favorite_border),
+                                                    SizedBox(width: 2),
+                                                    Text(
+                                                        post.hearts.toString()),
+                                                  ],
+                                                )),
+                                            IconButton(
                                                 padding: EdgeInsets.zero,
                                                 splashRadius: 15,
                                                 iconSize: 20,
                                                 onPressed: () {},
                                                 icon: Icon(
-                                                  Icons.keyboard_arrow_down,
-                                                ),
+                                                    Icons.chat_bubble_outline)),
+                                            IconButton(
+                                                padding: EdgeInsets.zero,
+                                                splashRadius: 15,
+                                                iconSize: 20,
+                                                onPressed: () {},
+                                                icon: Icon(
+                                                    Icons.keyboard_arrow_up)),
+                                            IconButton(
+                                              padding: EdgeInsets.zero,
+                                              splashRadius: 15,
+                                              iconSize: 20,
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.keyboard_arrow_down,
                                               ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 );

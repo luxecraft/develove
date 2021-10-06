@@ -1,6 +1,7 @@
 import 'package:develove/models/user.dart';
-import 'package:develove/services/connection.dart';
-import 'package:develove/services/constants.dart';
+import 'package:develove/services/supabase/connection.dart';
+import 'package:develove/services/supabase/constants.dart';
+import 'package:develove/services/user.dart';
 import 'package:develove/views/home_view/pages/explore/connection_view.dart';
 import 'package:flutter/material.dart';
 
@@ -208,34 +209,4 @@ class CustomSearch extends SearchDelegate {
       ),
     );
   }
-}
-
-Future<User?> getUserInfo(String email) async {
-  final userId = await searchConnection(email);
-  if (userId == null) {
-    return null;
-  } else {
-    final res = await supabase
-        .from('users')
-        .select()
-        .filter('uid', 'eq', userId)
-        .execute();
-    final data = res.data[0];
-    return User(
-        email: data['email'],
-        uid: data['uid'],
-        userName: data['username'],
-        fullName: data['fullName']);
-  }
-}
-
-Future<User?> getUserInfoById(int id) async {
-  final res =
-      await supabase.from('users').select().filter('uid', 'eq', id).execute();
-  final data = res.data[0];
-  return User(
-      email: data['email'],
-      uid: data['uid'],
-      userName: data['username'],
-      fullName: data['fullName']);
 }
