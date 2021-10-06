@@ -21,5 +21,5 @@ Future<dynamic> fetchUserData(String email) async {
 
   print(res.data);
   print(res.error);
-  return res.data[0];
+  return res.data.length > 0 ? res.data[0] : null;
 }

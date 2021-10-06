@@ -27,4 +27,4 @@ class User {
   }
 }
 
-class UserModel extends ChangeNotifier {}
+// class UserModel extends ChangeNotifier {}

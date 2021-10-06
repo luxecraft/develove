@@ -1,5 +1,6 @@
 import 'package:develove/views/home_view/home_view.dart';
 import 'package:develove/views/login_view.dart';
+import 'package:develove/views/new_user_view.dart';
 import 'package:develove/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,6 +74,7 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         '/home': (context) => HomeView(),
+        '/newUser': (context) => NewUserView(),
         '/login': (context) => LoginView(),
       },
     );

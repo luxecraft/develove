@@ -140,10 +140,9 @@ class ProfilePage extends StatelessWidget {
             );
           } else {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: CircularProgressIndicator(),
-                ),
+                CircularProgressIndicator(),
               ],
             );
           }
