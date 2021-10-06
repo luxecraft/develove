@@ -1,20 +1,7 @@
-const Typesense = require("typesense");
 const functions = require("firebase-functions");
+const client = require("./client");
 
 module.exports = functions.https.onRequest((req, res) => {
-  const client = new Typesense.Client({
-    nodes: [
-      {
-        host: "develove.ts.luxecraft.org",
-        port: "443",
-        protocol: "https",
-      },
-    ],
-    apiKey: functions.config().typesense.api_key,
-    connectionTimeoutSeconds: 120,
-    retryIntervalSeconds: 120,
-  });
-
   if (req.body.type === "DELETE") {
     return client
       .collections("users")
