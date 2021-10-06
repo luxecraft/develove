@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^1.24.0",
     "esm": "^3.2.25",
