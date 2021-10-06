@@ -1,7 +1,7 @@
 const Typesense = require("typesense");
 const functions = require("firebase-functions");
 
-exports.helloWorld = functions.https.onRequest((req, res) => {
+module.exports = functions.https.onRequest((req, res) => {
   const client = new Typesense.Client({
     nodes: [
       {

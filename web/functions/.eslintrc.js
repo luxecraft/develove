@@ -10,5 +10,6 @@ module.exports = {
     "object-curly-spacing": "off",
     "quote-props": "off",
     indent: ["error", 2, { SwitchCase: 1 }],
+    "max-len": ["error", { code: 120 }],
   },
 };
