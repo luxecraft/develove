@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 
 function PostDisplay() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
-    defaultValues,
     mode: "onChange",
   });
 
   const { isDirty, isValid, errors } = formState;
 
-  const updatePost = async ({ content, published }) => {
-    await reset({ content, published });
+  const updatePost = async ({ content, title }) => {
+    console.log(content, title);
+
+    reset({ content, title });
 
     toast.success("Post was updated successfully");
   };
@@ -32,7 +33,7 @@ function PostDisplay() {
         )}
         <button
           type="submit"
-          className=" bg-primary-solid "
+          className=" bg-primary-solid"
           disabled={!isValid || !isDirty}
         >
           Save Changes
