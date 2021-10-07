@@ -28,3 +28,7 @@ export async function getPosts() {
     .match("uid", userRes.data[0].uid);
   return posts.data;
 }
+
+export async function deletePost(pid) {
+  await supabase.from("posts").match("pid", pid).delete();
+}
