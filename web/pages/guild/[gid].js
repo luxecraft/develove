@@ -4,7 +4,6 @@ import { ChatFeed, Message } from "react-chat-ui";
 import { supabase } from "../../lib/supabase";
 import Image from "next/image";
 import { useAuth } from "../../lib/auth";
-import { searchUsers } from "../../lib/connection";
 
 export default function GuildDetail() {
   const [messages, setmessages] = useState([]);
