@@ -4,18 +4,35 @@ import { toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { searchUsers } from "../../lib/connection";
+import { useAuth } from "../../lib/auth";
+import { supabase } from "../../lib/supabase";
 
 function PostDisplay() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
     mode: "onChange",
   });
 
+  const currentUser = useAuth();
+
   const [preview, setPreview] = useState(false);
 
   const { isDirty, isValid, errors } = formState;
 
-  const updatePost = async ({ content, title }) => {
+  const updatePost = async ({ content, title, tags }) => {
     console.log(content, title);
+
+    const uid = await searchUsers(currentUser.email);
+
+    const res = await supabase.from("posts").insert({
+      uid: uid,
+      title: title,
+      data: content,
+      hearts: 0,
+      tags: tags.split(","),
+    });
+
+    console.log(res);
 
     reset({ content, title });
 
@@ -29,6 +46,9 @@ function PostDisplay() {
           <div className="flex flex-col items-center">
             <div className="w-2/3 m-3 px-10 py-3 rounded-lg outline-none bg-accentGray text-white shadow-sm">
               <h3>{watch("title")}</h3>
+            </div>
+            <div className="w-2/3 m-3 px-10 py-3 rounded-lg outline-none bg-accentGray text-white shadow-sm">
+              <p>{watch("tags")}</p>
             </div>
             <div className="rounded-lg w-2/3 m-3 p-10 outline-none bg-accentGray text-white shadow-sm">
               <ReactMarkdown
@@ -78,7 +98,17 @@ function PostDisplay() {
             type="text"
             className="w-2/3 m-3 px-10 py-3 rounded-lg outline-none bg-accentGray text-white shadow-sm"
             name="title"
+            placeholder="Post title"
             {...register("title", {
+              required: { value: true, message: "Title is required" },
+            })}
+          />
+          <input
+            type="text"
+            className="w-2/3 m-3 px-10 py-3 rounded-lg outline-none bg-accentGray text-white shadow-sm"
+            name="tags"
+            placeholder="Enter comma separated tags"
+            {...register("tags", {
               required: { value: true, message: "Title is required" },
             })}
           />
