@@ -33,94 +33,88 @@ print(list(result))""";
       ),
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppBar(),
-              SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 1.0, color: Colors.grey))),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.05),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.title,
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      SizedBox(height: 10),
-                      Markdown(
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.zero,
-                        data: post.content,
-                        shrinkWrap: true,
-                      ),
-                      // Text(
-                      //   post.content,
-                      // ),
-                      SizedBox(height: 10),
-                      // Card(
-                      //   shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(15.0),
-                      //   ),
-                      //   child: ClipRRect(
-                      //     borderRadius: BorderRadius.circular(15.0),
-                      //     child: HighlightView(
-                      //       code,
-                      //       padding: EdgeInsets.all(8.0),
-                      //       tabSize: 4,
-                      //       language: 'python',
-                      //       theme: atomOneDarkReasonableTheme,
-                      //     ),
-                      //   ),
-                      // ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                              padding: EdgeInsets.zero,
-                              splashRadius: 15,
-                              iconSize: 20,
-                              onPressed: () {},
-                              icon: Row(
-                                children: [
-                                  Icon(Icons.favorite_border),
-                                  SizedBox(width: 2),
-                                  Text(post.hearts.toString()),
-                                ],
-                              )),
-                          IconButton(
-                              padding: EdgeInsets.zero,
-                              splashRadius: 15,
-                              iconSize: 20,
-                              onPressed: () {},
-                              icon: Icon(Icons.chat_bubble_outline)),
-                          IconButton(
-                              padding: EdgeInsets.zero,
-                              splashRadius: 15,
-                              iconSize: 20,
-                              onPressed: () {},
-                              icon: Icon(Icons.keyboard_arrow_up)),
-                          IconButton(
+          child: NestedScrollView(
+            headerSliverBuilder: (_, __) => [SliverAppBar()],
+            body: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      post.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SizedBox(height: 10),
+                    Markdown(
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      data: post.content,
+                      shrinkWrap: true,
+                    ),
+                    // Text(
+                    //   post.content,
+                    // ),
+                    SizedBox(height: 10),
+                    // Card(
+                    //   shape: RoundedRectangleBorder(
+                    //     borderRadius: BorderRadius.circular(15.0),
+                    //   ),
+                    //   child: ClipRRect(
+                    //     borderRadius: BorderRadius.circular(15.0),
+                    //     child: HighlightView(
+                    //       code,
+                    //       padding: EdgeInsets.all(8.0),
+                    //       tabSize: 4,
+                    //       language: 'python',
+                    //       theme: atomOneDarkReasonableTheme,
+                    //     ),
+                    //   ),
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
                             padding: EdgeInsets.zero,
                             splashRadius: 15,
                             iconSize: 20,
                             onPressed: () {},
-                            icon: Icon(
-                              Icons.keyboard_arrow_down,
-                            ),
+                            icon: Row(
+                              children: [
+                                Icon(Icons.favorite_border),
+                                SizedBox(width: 2),
+                                Text(post.hearts.toString()),
+                              ],
+                            )),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            splashRadius: 15,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.chat_bubble_outline)),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            splashRadius: 15,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.keyboard_arrow_up)),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          splashRadius: 15,
+                          iconSize: 20,
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
                           ),
-                        ],
-                      )
-                    ],
-                  ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),

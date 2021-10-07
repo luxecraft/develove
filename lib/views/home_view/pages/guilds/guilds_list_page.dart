@@ -1,7 +1,6 @@
 import 'package:develove/models/guild.dart';
 import 'package:develove/models/message.dart';
 import 'package:develove/services/guilds.dart';
-import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/views/home_view/pages/guilds/guild_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

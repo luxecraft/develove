@@ -1,6 +1,7 @@
 import 'package:develove/models/user.dart';
 import 'package:develove/services/supabase/connection.dart';
 import 'package:develove/services/supabase/constants.dart';
+import 'package:develove/services/typesense/search_users.dart';
 import 'package:develove/services/user.dart';
 import 'package:develove/views/home_view/pages/explore/connection_view.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,9 @@ class ExplorePage extends StatelessWidget {
 class CustomSearch extends SearchDelegate {
   BuildContext context;
   CustomSearch(this.context);
+
+  @override
+  TextInputAction get textInputAction => TextInputAction.done;
 
   @override
   InputDecorationTheme? get searchFieldDecorationTheme => InputDecorationTheme(
@@ -84,7 +88,7 @@ class CustomSearch extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     return query != ""
         ? FutureBuilder(
-            future: getUserInfo(query),
+            future: searchConnections(query),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return Container(
@@ -209,12 +213,75 @@ class CustomSearch extends SearchDelegate {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFF282828),
-
-        // gradient: LinearGradient(
-        //     colors: [Color(0xFF313131), Color(0xFF282828)],
-        //     begin: Alignment.topLeft,
-        //     end: Alignment.bottomRight),
       ),
+      child: FutureBuilder(
+          future: searchConnections(query),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done &&
+                snapshot.hasData) {
+              final results = (snapshot.data as Map<String, dynamic>)['hits']
+                  .map((e) => User.fromJson(e['document']))
+                  .toList();
+              return ListView.builder(
+                  itemCount: 2,
+                  itemBuilder: (_, position) {
+                    final data = results[position];
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        data.fullName ?? "",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      ),
+                                      Text('@${data.userName}'),
+                                    ],
+                                  ),
+                                  FutureBuilder(
+                                      future: isConnected(data.uid),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData &&
+                                            supabase.auth.currentUser?.email !=
+                                                data.email &&
+                                            !(snapshot.data as bool)) {
+                                          return OutlinedButton(
+                                            onPressed: () async {
+                                              await newConnection(data.uid);
+                                            },
+                                            child: Text("Connect"),
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      }),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  });
+            } else {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [CircularProgressIndicator()],
+              );
+            }
+          }),
     );
   }
 }
