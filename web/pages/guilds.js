@@ -10,7 +10,7 @@ const checkLocalStorage = () => {
 };
 
 export default function Guilds() {
-  const [guildOnBoarding, setGuildOnBoarding] = useState(true); //Change state to checkLocalStorage()
+  const [guildOnBoarding, setGuildOnBoarding] = useState(checkLocalStorage());
 
   const handleGuildOnBoarding = () => {
     setGuildOnBoarding(false);
