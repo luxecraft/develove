@@ -28,6 +28,7 @@ Future<List<Message>> fetchMessages(int guildId) async {
       .select()
       .filter('gid', 'eq', guildId)
       .execute();
+
   return (res.data as List<dynamic>).map((e) => Message.fromJson(e)).toList();
 }
 
@@ -42,16 +43,18 @@ Future<void> createNewGuild(String guildName, List<String> tags) async {
 }
 
 Future<void> sendMessage(int gid, String text) async {
-  final user = await getUserInfo(supabase.auth.currentUser!.email!);
-  final res = await supabase.from('messages').insert({
-    'gid': gid,
-    'text': text,
-    'uid': user!.uid,
-    'created_at': DateTime.now().toString(),
-  }).execute();
-  print(res.status);
-  print(res.status);
-  print(res.status);
+  if (text.isNotEmpty) {
+    final user = await getUserInfo(supabase.auth.currentUser!.email!);
+    final res = await supabase.from('messages').insert({
+      'gid': gid,
+      'text': text,
+      'uid': user!.uid,
+      'created_at': DateTime.now().toString(),
+    }).execute();
+    print(res.status);
+    print(res.status);
+    print(res.status);
+  }
 }
 
 Future<void> addMembersToGuild(int gid, int tid) async {

@@ -1,5 +1,7 @@
 import 'package:develove/models/guild.dart';
+import 'package:develove/models/message.dart';
 import 'package:develove/services/guilds.dart';
+import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/views/home_view/pages/guilds/guild_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,33 +20,32 @@ class GuildListPage extends StatelessWidget {
             return ChangeNotifierProvider(
                 create: (_) => GuildModel(guilds: data),
                 builder: (context, _) {
-                  return Column(
-                    children: [
-                      AppBar(
-                        title: Text("Guilds"),
-                        actions: [
-                          IconButton(
-                            icon: Icon(Icons.sync),
-                            onPressed: () async {
-                              await Provider.of<GuildModel>(context,
-                                      listen: false)
-                                  .updateGuilds();
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.add),
-                            onPressed: () async {
-                              await showDialog(
-                                  context: context,
-                                  builder: (_) => NewGuildDialog());
-                              await Provider.of<GuildModel>(context,
-                                      listen: false)
-                                  .updateGuilds();
-                            },
-                          ),
-                        ],
-                      ),
-                      ListView.builder(
+                  return Column(children: [
+                    AppBar(
+                      title: Text("Guilds"),
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.sync),
+                          onPressed: () async {
+                            await Provider.of<GuildModel>(context,
+                                    listen: false)
+                                .updateGuilds();
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          onPressed: () async {
+                            await showDialog(
+                                context: context,
+                                builder: (_) => NewGuildDialog());
+                            await Provider.of<GuildModel>(context,
+                                    listen: false)
+                                .updateGuilds();
+                          },
+                        ),
+                      ],
+                    ),
+                    ListView.builder(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemCount:
@@ -58,19 +59,52 @@ class GuildListPage extends StatelessWidget {
                             ),
                             onTap: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        GuildExpandedView(guild: guild)),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => FutureBuilder(
+                                          future: fetchMessages(guild.gid),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.connectionState ==
+                                                    ConnectionState.done &&
+                                                snapshot.hasData) {
+                                              final messages = snapshot.data
+                                                  as List<Message>;
+
+                                              return ChangeNotifierProvider(
+                                                  create: (_) => MessageModel(
+                                                      guildId: guild.gid,
+                                                      messages: messages),
+                                                  builder: (context, _) {
+                                                    return GuildExpandedView(
+                                                      guild: guild,
+                                                      context: context,
+                                                    );
+                                                  });
+                                            } else {
+                                              return SafeArea(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        CircularProgressIndicator(),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }
+                                          })));
                             },
                             title: Text(guild.name),
                             trailing: Icon(Icons.arrow_forward_ios),
                           );
-                        },
-                      ),
-                    ],
-                  );
+                        })
+                  ]);
                 });
           } else {
             return Column(
@@ -97,6 +131,8 @@ class NewGuildDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Text("Guild Name"),
+          SizedBox(height: 5),
           TextField(
             controller: _guildNameController,
             cursorColor: Colors.grey,

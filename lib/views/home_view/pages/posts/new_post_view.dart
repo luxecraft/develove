@@ -17,7 +17,11 @@ class NewPostView extends StatelessWidget {
         body: Column(
           children: [
             AppBar(title: Text('New Post')),
-            Container(),
+            Column(
+              children: [
+                TextField(),
+              ],
+            ),
           ],
         ),
       ),
