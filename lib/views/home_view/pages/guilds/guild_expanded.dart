@@ -7,6 +7,7 @@ import 'package:develove/services/user.dart';
 import 'package:develove/views/home_view/pages/guilds/guild_info_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' as provider;
+import 'package:supabase/supabase.dart';
 
 class GuildExpandedView extends StatelessWidget {
   final Guild guild;
@@ -17,14 +18,21 @@ class GuildExpandedView extends StatelessWidget {
     required this.guild,
     required this.context,
   }) : super(key: key) {
-    supabase.from('messages').stream().execute().listen((_) {
-      provider.Provider.of<MessageModel>(context, listen: false)
-          .updateMessages();
-    });
+    supabase.from('messages').on(SupabaseEventTypes.insert, (payload) {
+      if (payload.newRecord != null) {
+        print("hai");
+        provider.Provider.of<MessageModel>(context, listen: false)
+            .fetchChanges(payload.newRecord!);
+        _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+      }
+    }).subscribe();
   }
 
   final TextEditingController _messageEditingController =
       TextEditingController();
+  final ScrollController _scrollController =
+      ScrollController(initialScrollOffset: 1.0);
   // bool isValidMessage = false;
 
   @override
@@ -32,7 +40,6 @@ class GuildExpandedView extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           color: Color(0xFF282828),
-
           // gradient: LinearGradient(
           //     colors: [Color(0xFF313131), Color(0xFF282828)],
           //     begin: Alignment.topLeft,
@@ -55,66 +62,77 @@ class GuildExpandedView extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: Container(
-                  child: ListView.builder(
-                      controller: ScrollController(initialScrollOffset: 100),
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      itemCount: provider.Provider.of<MessageModel>(context)
-                          .messages
-                          .length,
-                      itemBuilder: (_, position) {
-                        final e = provider.Provider.of<MessageModel>(context)
-                            .messages[position];
-
-                        return FutureBuilder(
-                            future:
-                                getUserInfo(supabase.auth.currentUser!.email!),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                      ConnectionState.done &&
-                                  snapshot.hasData) {
-                                final user = snapshot.data as userModel.User;
-                                final fromMe = user.uid == e.uid;
-                                return Row(
-                                  mainAxisAlignment: fromMe
-                                      ? MainAxisAlignment.end
-                                      : MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Material(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        color: fromMe
-                                            ? Color(0xFF6ECD95)
-                                            : Colors.white,
-                                        child: Container(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              e.text,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1
-                                                  ?.apply(
-                                                    color: Colors.black,
-                                                  ),
+                child: FutureBuilder(
+                    future: (() async {
+                      await provider.Provider.of<MessageModel>(context,
+                              listen: false)
+                          .updateMessages();
+                      return getUserInfo(supabase.auth.currentUser!.email!);
+                    }()),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        final user = snapshot.data as userModel.User;
+                        return Container(
+                            child: ListView.builder(
+                                keyboardDismissBehavior:
+                                    ScrollViewKeyboardDismissBehavior.onDrag,
+                                controller: _scrollController,
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                itemCount:
+                                    provider.Provider.of<MessageModel>(context)
+                                        .messages
+                                        .length,
+                                itemBuilder: (_, position) {
+                                  // _scrollController.animateTo(
+                                  //     _scrollController
+                                  //         .position.maxScrollExtent,
+                                  //     duration: Duration(milliseconds: 300),
+                                  //     curve: Curves.easeIn);
+                                  final e = provider.Provider.of<MessageModel>(
+                                          context)
+                                      .messages[position];
+                                  final fromMe = user.uid == e.uid;
+                                  return Row(
+                                    mainAxisAlignment: fromMe
+                                        ? MainAxisAlignment.end
+                                        : MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Material(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          color: fromMe
+                                              ? Color(0xFF6ECD95)
+                                              : Colors.white,
+                                          child: Container(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                e.text,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1
+                                                    ?.apply(
+                                                      color: Colors.black,
+                                                    ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              } else {
-                                return Container();
-                              }
-                            });
-                      }),
-                ),
+                                    ],
+                                  );
+                                }));
+                      } else {
+                        return Container();
+                      }
+                    }),
               ),
               Material(
                 elevation: 10.0,
@@ -168,11 +186,7 @@ class GuildExpandedView extends StatelessWidget {
                           onPressed: () async {
                             final text = _messageEditingController.text;
                             _messageEditingController.clear();
-
                             await sendMessage(guild.gid, text);
-                            await provider.Provider.of<MessageModel>(context,
-                                    listen: false)
-                                .updateMessages();
                           },
                         ),
                       ],

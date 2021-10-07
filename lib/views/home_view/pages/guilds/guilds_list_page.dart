@@ -52,55 +52,31 @@ class GuildListPage extends StatelessWidget {
                         itemBuilder: (_, position) {
                           final guild =
                               Provider.of<GuildModel>(context).guilds[position];
-                          return ListTile(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => FutureBuilder(
-                                          future: fetchMessages(guild.gid),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.connectionState ==
-                                                    ConnectionState.done &&
-                                                snapshot.hasData) {
-                                              final messages = snapshot.data
-                                                  as List<Message>;
-
-                                              return ChangeNotifierProvider(
-                                                  create: (_) => MessageModel(
-                                                      guildId: guild.gid,
-                                                      messages: messages),
-                                                  builder: (context, _) {
-                                                    return GuildExpandedView(
-                                                      guild: guild,
-                                                      context: context,
-                                                    );
-                                                  });
-                                            } else {
-                                              return SafeArea(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        CircularProgressIndicator(),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => ChangeNotifierProvider(
+                                            create: (_) => MessageModel(
+                                                guildId: guild.gid,
+                                                messages: []),
+                                            builder: (context, _) {
+                                              return GuildExpandedView(
+                                                guild: guild,
+                                                context: context,
                                               );
-                                            }
-                                          })));
-                            },
-                            title: Text(guild.name),
-                            trailing: Icon(Icons.arrow_forward_ios),
+                                            })));
+                              },
+                              title: Text(guild.name),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                            ),
                           );
                         })
                   ]);

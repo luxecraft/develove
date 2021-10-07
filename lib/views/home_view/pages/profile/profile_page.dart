@@ -103,18 +103,25 @@ class ProfilePage extends StatelessWidget {
                                           ),
                                           SizedBox(height: 5),
                                           Row(
-                                            children:
-                                                user.tags.map((String tag) {
-                                              print(tag);
-                                              return Card(
-                                                color: Color(0xFF282828),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Text(tag),
-                                                ),
-                                              );
-                                            }).toList(),
+                                            children: (() {
+                                              final cards =
+                                                  user.tags.map((String tag) {
+                                                print(tag);
+                                                return Card(
+                                                  color: Color(0xFF282828),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(tag),
+                                                  ),
+                                                );
+                                              }).toList();
+                                              if (cards.length > 2) {
+                                                return cards.sublist(0, 2);
+                                              }
+                                              return cards;
+                                            }()),
                                           )
                                         ])
                                   ],

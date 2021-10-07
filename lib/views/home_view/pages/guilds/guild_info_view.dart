@@ -54,38 +54,73 @@ class GuildInfoView extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done &&
                           snapshot.hasData) {
-                        final user = snapshot.data as User;
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            user.fullName ?? "",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6,
+                        final data = snapshot.data as User;
+                        return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0, vertical: 4.0),
+                            child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    side: BorderSide(
+                                        width: 1.0, color: Color(0xFF6ECD95))),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 100,
+                                        child: Card(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ListTile(
+                                              leading: FutureBuilder(
+                                                  future: http.get(Uri.parse(
+                                                      "https://avatars.dicebear.com/api/miniavs/${data.userName}.svg")),
+                                                  builder: (context, snapshot) {
+                                                    if (snapshot.connectionState ==
+                                                            ConnectionState
+                                                                .done &&
+                                                        snapshot.hasData) {
+                                                      return SvgPicture.string(
+                                                        (snapshot.data as http
+                                                                .Response)
+                                                            .body
+                                                            .toString(),
+                                                        height: 70,
+                                                      );
+                                                    } else {
+                                                      return Container(
+                                                        height: 70,
+                                                        width: 70,
+                                                      );
+                                                    }
+                                                  }),
+                                              title: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    data.fullName ?? "",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6,
+                                                  ),
+                                                  Text(
+                                                    '@${data.userName}',
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          Text('@${user.userName}'),
-                                        ],
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
+                                    ),
+                                  ],
+                                )));
                       } else {
                         return Container();
                       }
@@ -135,7 +170,7 @@ class CustomSearch extends SearchDelegate {
   }
 
   @override
-  TextInputAction get textInputAction => TextInputAction.done;
+  TextInputAction get textInputAction => TextInputAction.none;
 
   @override
   Widget? buildLeading(BuildContext context) {
@@ -174,73 +209,88 @@ class CustomSearch extends SearchDelegate {
                   itemCount: results.length,
                   itemBuilder: (context, position) {
                     final data = results[position];
-                    return Row(
-                      children: [
-                        Expanded(
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      FutureBuilder(
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 4.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                            side: BorderSide(
+                                width: 1.0, color: Color(0xFF6ECD95))),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                height: 80,
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ListTile(
+                                      leading: FutureBuilder(
                                           future: http.get(Uri.parse(
                                               "https://avatars.dicebear.com/api/miniavs/${data.userName}.svg")),
                                           builder: (context, snapshot) {
                                             if (snapshot.connectionState ==
                                                     ConnectionState.done &&
                                                 snapshot.hasData) {
-                                              return SvgPicture.string((snapshot
-                                                      .data as http.Response)
-                                                  .body
-                                                  .toString());
+                                              return SvgPicture.string(
+                                                (snapshot.data as http.Response)
+                                                    .body
+                                                    .toString(),
+                                                height: 70,
+                                              );
                                             } else {
-                                              return CircularProgressIndicator();
+                                              return Container(
+                                                height: 70,
+                                                width: 70,
+                                              );
                                             }
                                           }),
-                                      Column(
+                                      title: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Text(
                                             data.fullName ?? "",
+                                            overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline6,
                                           ),
-                                          Text('@${data.userName}'),
+                                          Text(
+                                            '@${data.userName}',
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ],
                                       ),
-                                    ],
+                                      trailing: FutureBuilder(
+                                          future: isMember(gid, data.uid),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData &&
+                                                supabase.auth.currentUser
+                                                        ?.email !=
+                                                    data.email &&
+                                                (snapshot.data as bool)) {
+                                              return OutlinedButton(
+                                                onPressed: () async {
+                                                  await addMembersToGuild(
+                                                      gid, data.uid);
+                                                },
+                                                child: Text("Add"),
+                                              );
+                                            } else {
+                                              return SizedBox();
+                                            }
+                                          }),
+                                    ),
                                   ),
-                                  FutureBuilder(
-                                      future: isMember(gid, data.uid),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.hasData &&
-                                            supabase.auth.currentUser?.email !=
-                                                data.email &&
-                                            (snapshot.data as bool)) {
-                                          return OutlinedButton(
-                                            onPressed: () async {
-                                              await addMembersToGuild(
-                                                  gid, data.uid);
-                                            },
-                                            child: Text("Add"),
-                                          );
-                                        } else {
-                                          return Container();
-                                        }
-                                      }),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     );
                   }),
             );
