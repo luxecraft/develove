@@ -99,3 +99,8 @@ export async function getUser(tid) {
   let res = await supabase.from("users").select().match({ uid: tid });
   return res.data[0];
 }
+
+export async function signOut() {
+  let res = await supabase.auth.signOut();
+  console.log(res.data);
+}

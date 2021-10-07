@@ -1,3 +1,4 @@
+import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import { useAuth } from "../lib/auth";
 import { updateUser } from "../lib/signupComplete";
@@ -9,6 +10,8 @@ export default function OnBoarding() {
     username: "",
   });
 
+  const router = useRouter();
+
   const handleChange = (e) => {
     setUserObject({ ...userObject, [e.target.name]: e.target.value });
   };
@@ -17,9 +20,8 @@ export default function OnBoarding() {
     e.preventDefault();
     let tagsToBeSent = [];
     tagsToBeSent = userObject.tags.split(",");
-    console.log(tagsToBeSent);
-    console.log(userObject);
     await updateUser(userObject.fullName, tagsToBeSent, userObject.username);
+    router.push("/home");
   };
 
   return (
@@ -37,6 +39,7 @@ export default function OnBoarding() {
             name="fullName"
             value={userObject.fullName}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="my-5">
@@ -63,6 +66,7 @@ export default function OnBoarding() {
             name="tags"
             value={userObject.tags}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="my-5">
@@ -74,11 +78,12 @@ export default function OnBoarding() {
             name="username"
             value={userObject.username}
             onChange={handleChange}
+            required
           />
         </div>
 
         <button
-          className=" bg-primary-solid px-10 py-2 rounded-lg my-10"
+          className="my-10 bg-gradient-to-tr from-primary-start to-primary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
           onSubmit={handleSubmit}
         >
           Submit

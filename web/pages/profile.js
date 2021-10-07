@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/auth";
-import { getCurrentUser } from "../lib/connection";
+import { getCurrentUser, signOut } from "../lib/connection";
 import Image from "next/image";
+import { useRouter } from "next/dist/client/router";
 
 export default function Profile() {
   const [thisUser, setThisUser] = useState(null);
   const { currentUser } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (currentUser)
@@ -31,10 +33,22 @@ export default function Profile() {
               height="120"
               width="120"
             />
-            <div className="ml-10">
-              <h1 className="text-4xl font-mono font-semibold">
-                {thisUser.fullName}
-              </h1>
+            <div className="ml-10 w-full">
+              <div className="flex justify-between">
+                <h1 className="text-4xl font-mono font-semibold">
+                  {thisUser.fullName}
+                </h1>
+                <button
+                  onClick={() => {
+                    signOut().then(() => {
+                      router.push("/splash");
+                    });
+                  }}
+                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+                >
+                  Logout
+                </button>
+              </div>
               <h1 className="text-md mt-1 font-bold opacity-80">
                 @{thisUser.username}
               </h1>

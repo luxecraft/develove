@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     }
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(session);
-      setCurrentUser(session.user);
+      setCurrentUser(session?.user);
     });
     setLoading(false);
   }, []);

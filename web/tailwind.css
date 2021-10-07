@@ -7071,6 +7071,32 @@ video {
   transform: none;
 }
 
+.hover\:transform:hover {
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:transform-gpu:hover {
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:transform-none:hover {
+  transform: none;
+}
+
 .translate-x-0 {
   --tw-translate-x: 0px;
 }
@@ -10032,56 +10058,6 @@ video {
 }
 
 .animate-bounce {
-  -webkit-animation: bounce 1s infinite;
-          animation: bounce 1s infinite;
-}
-
-.hover\:animate-none:hover {
-  -webkit-animation: none;
-          animation: none;
-}
-
-.hover\:animate-spin:hover {
-  -webkit-animation: spin 1s linear infinite;
-          animation: spin 1s linear infinite;
-}
-
-.hover\:animate-ping:hover {
-  -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.hover\:animate-pulse:hover {
-  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.hover\:animate-bounce:hover {
-  -webkit-animation: bounce 1s infinite;
-          animation: bounce 1s infinite;
-}
-
-.focus\:animate-none:focus {
-  -webkit-animation: none;
-          animation: none;
-}
-
-.focus\:animate-spin:focus {
-  -webkit-animation: spin 1s linear infinite;
-          animation: spin 1s linear infinite;
-}
-
-.focus\:animate-ping:focus {
-  -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.focus\:animate-pulse:focus {
-  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.focus\:animate-bounce:focus {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
 }
@@ -25626,6 +25602,32 @@ video {
     transform: none;
   }
 
+  .sm\:hover\:transform:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .sm\:hover\:transform-gpu:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .sm\:hover\:transform-none:hover {
+    transform: none;
+  }
+
   .sm\:translate-x-0 {
     --tw-translate-x: 0px;
   }
@@ -28521,56 +28523,6 @@ video {
   }
 
   .sm\:animate-bounce {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .sm\:hover\:animate-none:hover {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .sm\:hover\:animate-spin:hover {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .sm\:hover\:animate-ping:hover {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .sm\:hover\:animate-pulse:hover {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .sm\:hover\:animate-bounce:hover {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .sm\:focus\:animate-none:focus {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .sm\:focus\:animate-spin:focus {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .sm\:focus\:animate-ping:focus {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .sm\:focus\:animate-pulse:focus {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .sm\:focus\:animate-bounce:focus {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
@@ -44055,6 +44007,32 @@ video {
     transform: none;
   }
 
+  .md\:hover\:transform:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .md\:hover\:transform-gpu:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .md\:hover\:transform-none:hover {
+    transform: none;
+  }
+
   .md\:translate-x-0 {
     --tw-translate-x: 0px;
   }
@@ -46950,56 +46928,6 @@ video {
   }
 
   .md\:animate-bounce {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .md\:hover\:animate-none:hover {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .md\:hover\:animate-spin:hover {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .md\:hover\:animate-ping:hover {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .md\:hover\:animate-pulse:hover {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .md\:hover\:animate-bounce:hover {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .md\:focus\:animate-none:focus {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .md\:focus\:animate-spin:focus {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .md\:focus\:animate-ping:focus {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .md\:focus\:animate-pulse:focus {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .md\:focus\:animate-bounce:focus {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
@@ -62484,6 +62412,32 @@ video {
     transform: none;
   }
 
+  .lg\:hover\:transform:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:hover\:transform-gpu:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:hover\:transform-none:hover {
+    transform: none;
+  }
+
   .lg\:translate-x-0 {
     --tw-translate-x: 0px;
   }
@@ -65379,56 +65333,6 @@ video {
   }
 
   .lg\:animate-bounce {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .lg\:hover\:animate-none:hover {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .lg\:hover\:animate-spin:hover {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .lg\:hover\:animate-ping:hover {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .lg\:hover\:animate-pulse:hover {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .lg\:hover\:animate-bounce:hover {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .lg\:focus\:animate-none:focus {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .lg\:focus\:animate-spin:focus {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .lg\:focus\:animate-ping:focus {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .lg\:focus\:animate-pulse:focus {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .lg\:focus\:animate-bounce:focus {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
@@ -80913,6 +80817,32 @@ video {
     transform: none;
   }
 
+  .xl\:hover\:transform:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .xl\:hover\:transform-gpu:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .xl\:hover\:transform-none:hover {
+    transform: none;
+  }
+
   .xl\:translate-x-0 {
     --tw-translate-x: 0px;
   }
@@ -83808,56 +83738,6 @@ video {
   }
 
   .xl\:animate-bounce {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .xl\:hover\:animate-none:hover {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .xl\:hover\:animate-spin:hover {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .xl\:hover\:animate-ping:hover {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .xl\:hover\:animate-pulse:hover {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .xl\:hover\:animate-bounce:hover {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .xl\:focus\:animate-none:focus {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .xl\:focus\:animate-spin:focus {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .xl\:focus\:animate-ping:focus {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .xl\:focus\:animate-pulse:focus {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .xl\:focus\:animate-bounce:focus {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
@@ -99342,6 +99222,32 @@ video {
     transform: none;
   }
 
+  .\32xl\:hover\:transform:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .\32xl\:hover\:transform-gpu:hover {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    transform: translate3d(var(--tw-translate-x), var(--tw-translate-y), 0) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .\32xl\:hover\:transform-none:hover {
+    transform: none;
+  }
+
   .\32xl\:translate-x-0 {
     --tw-translate-x: 0px;
   }
@@ -102237,56 +102143,6 @@ video {
   }
 
   .\32xl\:animate-bounce {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .\32xl\:hover\:animate-none:hover {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .\32xl\:hover\:animate-spin:hover {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .\32xl\:hover\:animate-ping:hover {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .\32xl\:hover\:animate-pulse:hover {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .\32xl\:hover\:animate-bounce:hover {
-    -webkit-animation: bounce 1s infinite;
-            animation: bounce 1s infinite;
-  }
-
-  .\32xl\:focus\:animate-none:focus {
-    -webkit-animation: none;
-            animation: none;
-  }
-
-  .\32xl\:focus\:animate-spin:focus {
-    -webkit-animation: spin 1s linear infinite;
-            animation: spin 1s linear infinite;
-  }
-
-  .\32xl\:focus\:animate-ping:focus {
-    -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .\32xl\:focus\:animate-pulse:focus {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .\32xl\:focus\:animate-bounce:focus {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }

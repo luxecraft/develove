@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
+import { useAuth } from "../lib/auth";
+import { useRouter } from "next/dist/client/router";
+import { searchUsers } from "../lib/connection";
 export default function Splash() {
+  const { currentUser } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (currentUser) {
+      searchUsers(currentUser.email).then((res) => {
+        if (res == -1) {
+          router.push("/onboarding");
+        } else {
+          router.push("/home");
+        }
+      });
+    }
+  }, [currentUser, router]);
   return (
     <div className="flex justify-center text-center">
       <div className="px-40 mt-20">

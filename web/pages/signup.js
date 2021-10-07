@@ -2,12 +2,12 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect } from "react";
 import { useAuth } from "../lib/auth";
 import Image from "next/image";
+import { searchUsers } from "../lib/connection";
 
 export default function Signup() {
   const { currentUser, signUpWithGithub, signUpWithGoogle } = useAuth();
   const router = useRouter();
   useEffect(() => {
-    //Implement logic to check if currentUser exists in supabase, if not, redirect to onboarding
     if (currentUser) {
       router.push("/");
     }
@@ -22,11 +22,11 @@ export default function Signup() {
           <div>
             <button
               onClick={() => signUpWithGoogle()}
-              className="h-12 w-5/12 bg-white rounded-md my-5 p-2"
+              className="h-12 w-6/12 bg-white rounded-md my-5 p-2"
             >
               <div className="flex px-12 items-center">
                 <Image src="/google.png" alt="google" height="25" width="25" />
-                <p className="font-mono text-lg font-medium ml-5">
+                <p className="font-mono text-md font-medium ml-5">
                   Sign in with Google
                 </p>
               </div>
@@ -35,21 +35,21 @@ export default function Signup() {
           <div>
             <button
               onClick={() => signUpWithGithub()}
-              className="h-12 w-5/12 bg-white rounded-md my-5 p-2"
+              className="h-12 w-6/12 bg-white rounded-md my-5 p-2"
             >
               <div className="flex px-12 items-center">
                 <Image src="/github.png" alt="github" height="25" width="25" />
-                <p className="font-mono text-lg font-medium ml-5">
+                <p className="font-mono text-md font-medium ml-5">
                   Sign in with Github
                 </p>
               </div>
             </button>
           </div>
           <div>
-            <button className="h-12 w-5/12 bg-white rounded-md my-5 mb-16 p-2">
+            <button className="h-12 w-6/12 bg-white rounded-md my-5 mb-16 p-2">
               <div className="flex px-12 items-center">
                 <Image src="/apple.png" alt="apple" height="25" width="25" />
-                <p className="font-mono text-lg font-medium ml-5">
+                <p className="font-mono text-md font-medium ml-5">
                   Sign in with Apple
                 </p>
               </div>
