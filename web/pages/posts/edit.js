@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 function PostDisplay() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
@@ -39,7 +39,7 @@ function PostDisplay() {
                       <SyntaxHighlighter
                         // eslint-disable-next-line react/no-children-prop
                         children={String(children).replace(/\n$/, "")}
-                        style={dark}
+                        style={atomDark}
                         language={match[1]}
                         PreTag="div"
                         {...props}
@@ -78,7 +78,9 @@ function PostDisplay() {
             type="text"
             className="w-2/3 m-3 px-10 py-3 rounded-lg outline-none bg-accentGray text-white shadow-sm"
             name="title"
-            {...register("title")}
+            {...register("title", {
+              required: { value: true, message: "Title is required" },
+            })}
           />
           <textarea
             className="rounded-lg w-2/3 m-3 p-10 outline-none bg-accentGray text-white shadow-sm"
