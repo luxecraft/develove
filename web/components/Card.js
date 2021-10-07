@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { newConnection } from "../lib/connection";
 import toast from "react-hot-toast";
+import { truncatePost } from "../lib/utils";
 export default function Card({ hit }) {
   const user = hit;
 
@@ -55,8 +56,14 @@ export default function Card({ hit }) {
     );
 
   return (
-    <div className="bg-accentGray flex-grow h-48 rounded-xl shadow-lg p-10 text-white font-medium">
-      hi
+    <div className="bg-accentGray mx-10 flex rounded-xl my-5 shadow-lg p-10 text-white font-medium">
+      <div className="">
+        <h1 className="text-4xl font-mono font-semibold my-5">{hit.title}</h1>
+        <h1 className="text-md mt-1 font-bold opacity-80">
+          {truncatePost(hit.data)}
+          {hit.createdAt}
+        </h1>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import TypesenseInstantsearchAdapter from "typesense-instantsearch-adapter";
 
-const typesense = new TypesenseInstantsearchAdapter({
+const typesensePeople = new TypesenseInstantsearchAdapter({
   server: {
     apiKey: "TPBbQ8qrVfkokxdno0Xt8GakbmH26Wkcjy15VhMPnK3jlNR4",
     nodes: [
@@ -12,6 +12,22 @@ const typesense = new TypesenseInstantsearchAdapter({
   },
 });
 
-const searchClient = typesense.searchClient;
+const searchClientPeople = typesensePeople.searchClient;
 
-export default searchClient;
+export { searchClientPeople };
+
+const typesensePosts = new TypesenseInstantsearchAdapter({
+  server: {
+    apiKey: "TPBbQ8qrVfkokxdno0Xt8GakbmH26Wkcjy15VhMPnK3jlNR4",
+    nodes: [
+      { host: "develove.ts.luxecraft.org", port: "443", protocol: "https" },
+    ],
+  },
+  additionalSearchParameters: {
+    queryBy: "title",
+  },
+});
+
+const searchClientPosts = typesensePosts.searchClient;
+
+export { searchClientPosts };
