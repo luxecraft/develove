@@ -1,4 +1,4 @@
-import 'package:develove/utils/constants.dart';
+import 'package:develove/services/supabase/constants.dart';
 
 Future<void> updateUser(
     String fullName, List<String> tags, String? username) async {
@@ -12,12 +12,14 @@ Future<void> updateUser(
   print(res.status);
 }
 
-Future<void> fetchUserData(String email) async {
+Future<dynamic> fetchUserData(String email) async {
   final res = await supabase
       .from('users')
       .select()
       .filter('email', 'eq', email)
       .execute();
+
   print(res.data);
   print(res.error);
+  return res.data[0];
 }

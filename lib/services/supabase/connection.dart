@@ -1,5 +1,14 @@
 import 'constants.dart';
 
+Future<bool> isConnected(int tid) async {
+  final res = await supabase
+      .from('connections')
+      .select('connected')
+      .match({'tid': tid}).execute();
+  List<dynamic> data = res.data;
+  return data[0]['connected'];
+}
+
 Future<void> newConnection(int tid) async {
   var currentUser = await supabase.auth.currentUser!.email;
   var userRes = await supabase
@@ -15,15 +24,15 @@ Future<void> newConnection(int tid) async {
   print(res.data);
 }
 
-Future<void> rejectConnection(int tid) async {
+Future<void> rejectConnection(int fid) async {
   var currentUser = await supabase.auth.currentUser!.email;
   var userRes = await supabase
       .from('users')
       .select('uid')
       .match({'email': currentUser}).execute();
   final data = {
-    'fid': userRes.data[0]['uid'],
-    'tid': tid,
+    'fid': fid,
+    'tid': userRes.data[0]['uid'],
   };
   // creates a pending request
   final res = await supabase.from('connections').delete().match(data).execute();
@@ -31,16 +40,17 @@ Future<void> rejectConnection(int tid) async {
   print(res.data);
 }
 
-Future<void> acceptConnection(int tid) async {
+Future<void> acceptConnection(int fid) async {
   var currentUser = await supabase.auth.currentUser!.email;
   var userRes = await supabase
       .from('users')
       .select('uid')
       .match({'email': currentUser}).execute();
   var data = {
-    'fid': userRes.data[0]['uid'],
-    'tid': tid,
+    'fid': fid,
+    'tid': userRes.data[0]['uid'],
   };
+
   // updates the connected status to true
   var res = await supabase
       .from('connections')
@@ -48,8 +58,8 @@ Future<void> acceptConnection(int tid) async {
       .match(data)
       .execute();
   data = {
-    'tid': userRes.data[0]['uid'],
-    'fid': tid,
+    'tid': fid,
+    'fid': userRes.data[0]['uid'],
     'connected': true,
   };
   // creates a two way connection between the two users
@@ -68,7 +78,7 @@ Future<int?> searchConnection(String email) async {
   return (res.data as List<dynamic>).isNotEmpty ? res.data[0]['uid'] : null;
 }
 
-Future<Map<String, dynamic>> getConnections() async {
+Future<List<dynamic>> getConnections() async {
   var currentUser = await supabase.auth.currentUser!.email;
   var userRes = await supabase
       .from('users')

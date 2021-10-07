@@ -1,12 +1,14 @@
+import 'package:develove/services/dicebear.dart';
+import 'package:develove/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 
-import 'package:develove/components/auth_required.dart';
+import 'package:develove/services/supabase/auth/auth_required.dart';
 
-import 'package:develove/views/home_view/pages/explore_page.dart';
-import 'package:develove/views/home_view/pages/guilds_list_page.dart';
+import 'package:develove/views/home_view/pages/explore/explore_page.dart';
+import 'package:develove/views/home_view/pages/guilds/guilds_list_page.dart';
 import 'package:develove/views/home_view/pages/home_page.dart';
-import 'package:develove/views/home_view/pages/profile_page.dart';
+import 'package:develove/views/home_view/pages/profile/profile_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -108,9 +110,7 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
               ),
               BottomNavigationBarItem(
                 activeIcon: Icon(Icons.account_circle),
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                ),
+                icon: Icon(Icons.account_circle_outlined),
                 label: "Profile",
               ),
             ],
@@ -119,4 +119,9 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
       ),
     );
   }
+}
+
+Future<String> getUserAvatar(String email) async {
+  final user = await getUserInfo(email);
+  return await DicebearServices.getAvatar(user!.userName);
 }
