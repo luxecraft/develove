@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 
-export async function createPosts(posts) {
+export async function createPost(post) {
   let currentUser = supabase.auth.user().email;
   let userRes = await supabase
     .from("users")
@@ -8,10 +8,10 @@ export async function createPosts(posts) {
     .match("email", currentUser);
   let data = {
     uid: userRes.data[0].uid,
-    title: posts.title,
+    title: post.title,
     hearts: 0,
-    data: posts.data,
-    tags: posts.tags,
+    data: post.data,
+    tags: post.tags,
   };
   await supabase.from("posts").insert(data);
 }
