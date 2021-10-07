@@ -278,7 +278,14 @@ class CustomSearch extends SearchDelegate {
             } else {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [CircularProgressIndicator()],
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                    ],
+                  )
+                ],
               );
             }
           }),

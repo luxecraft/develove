@@ -3,7 +3,6 @@ import 'package:develove/services/supabase/posts.dart';
 import 'package:develove/views/home_view/pages/posts/new_post_view.dart';
 import 'package:develove/views/home_view/pages/posts/post_expanded.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 

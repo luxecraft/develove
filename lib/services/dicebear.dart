@@ -2,7 +2,7 @@ import 'package:develove/services/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class DicebearServices {
-  static Future<String> getAvatar(String seed) async {
+  static Future<String> getUserAvatar(String seed) async {
     String? svgString =
         await SharedPreferencesService.readFromSharedPreference('avatar');
     if (svgString != null) {

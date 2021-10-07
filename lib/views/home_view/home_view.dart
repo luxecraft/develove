@@ -125,5 +125,5 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
 
 Future<String> getUserAvatar(String email) async {
   final user = await getUserInfo(email);
-  return await DicebearServices.getAvatar(user!.userName);
+  return await DicebearServices.getUserAvatar(user!.userName);
 }
