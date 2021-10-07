@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import GuildList from "../components/GuildList";
 
 const checkLocalStorage = () => {
   const ls = localStorage.getItem("guildOnBoard");
@@ -10,16 +11,12 @@ const checkLocalStorage = () => {
 };
 
 export default function Guilds() {
-  const [guildOnBoarding, setGuildOnBoarding] = useState(true); //Change state to checkLocalStorage()
+  const [guildOnBoarding, setGuildOnBoarding] = useState(checkLocalStorage());
 
   const handleGuildOnBoarding = () => {
     setGuildOnBoarding(false);
     localStorage.setItem("guildOnBoard", false);
   };
-
-  useEffect(() => {
-    console.log(localStorage.getItem("guildOnBoard"));
-  }, []);
 
   if (guildOnBoarding)
     return (
@@ -52,7 +49,7 @@ export default function Guilds() {
 
   return (
     <div className="flex justify-center text-center">
-      {/* Actual Guild Content */}
+      <GuildList />
     </div>
   );
 }
