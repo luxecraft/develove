@@ -89,10 +89,11 @@ class CustomSearch extends SearchDelegate {
               if (snapshot.connectionState == ConnectionState.done) {
                 return Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xFF313131), Color(0xFF282828)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight),
+                    // gradient: LinearGradient(
+                    //     colors: [Color(0xFF313131), Color(0xFF282828)],
+                    //     begin: Alignment.topLeft,
+                    //     end: Alignment.bottomRight),
+                    color: Color(0xFF282828),
                   ),
                   child: snapshot.data != null
                       ? (() {
@@ -155,10 +156,11 @@ class CustomSearch extends SearchDelegate {
                         }())
                       : Container(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Color(0xFF313131), Color(0xFF282828)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight),
+                            // gradient: LinearGradient(
+                            //     colors: [Color(0xFF313131), Color(0xFF282828)],
+                            //     begin: Alignment.topLeft,
+                            //     end: Alignment.bottomRight),
+                            color: Color(0xFF282828),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -180,20 +182,24 @@ class CustomSearch extends SearchDelegate {
               } else {
                 return Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xFF313131), Color(0xFF282828)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight),
+                    color: Color(0xFF282828),
+
+                    // gradient: LinearGradient(
+                    //     colors: [Color(0xFF313131), Color(0xFF282828)],
+                    //     begin: Alignment.topLeft,
+                    //     end: Alignment.bottomRight),
                   ),
                 );
               }
             })
         : Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Color(0xFF313131), Color(0xFF282828)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight),
+              color: Color(0xFF282828),
+
+              // gradient: LinearGradient(
+              //     colors: [Color(0xFF313131), Color(0xFF282828)],
+              //     begin: Alignment.topLeft,
+              //     end: Alignment.bottomRight),
             ),
           );
   }
@@ -202,10 +208,12 @@ class CustomSearch extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Color(0xFF313131), Color(0xFF282828)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
+        color: Color(0xFF282828),
+
+        // gradient: LinearGradient(
+        //     colors: [Color(0xFF313131), Color(0xFF282828)],
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight),
       ),
     );
   }

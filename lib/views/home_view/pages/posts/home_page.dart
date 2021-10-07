@@ -30,9 +30,8 @@ class HomePage extends StatelessWidget {
                           SliverAppBar(
                             elevation: 1.0,
                             systemOverlayStyle: SystemUiOverlayStyle(
-                                statusBarColor:
-                                    Color(0xFF313131).withOpacity(0.9)),
-                            backgroundColor: Color(0xFF313131).withOpacity(0.9),
+                                statusBarColor: Color(0xFF313131)),
+                            // backgroundColor: Color(0xFF313131).withOpacity(0.9),
                             pinned: true,
                             centerTitle: true,
                             title: Image.asset(

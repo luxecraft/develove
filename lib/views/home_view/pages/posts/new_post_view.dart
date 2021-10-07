@@ -7,10 +7,11 @@ class NewPostView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Color(0xFF313131), Color(0xFF282828)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
+        // gradient: LinearGradient(
+        //     colors: [Color(0xFF313131), Color(0xFF282828)],
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight),
+        color: Color(0xFF282828),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

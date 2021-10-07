@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:develove/models/guild.dart';
 import 'package:develove/models/message.dart';
 import 'package:develove/models/user.dart' as userModel;
@@ -33,10 +31,12 @@ class GuildExpandedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Color(0xFF313131), Color(0xFF282828)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
+          color: Color(0xFF282828),
+
+          // gradient: LinearGradient(
+          //     colors: [Color(0xFF313131), Color(0xFF282828)],
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight),
         ),
         child: Scaffold(
             backgroundColor: Colors.transparent,
