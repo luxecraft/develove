@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class User {
   late int uid;
   late String? fullName;
@@ -27,4 +25,4 @@ class User {
   }
 }
 
-class UserModel extends ChangeNotifier {}
+// class UserModel extends ChangeNotifier {}

@@ -13,3 +13,10 @@ Future<User?> getUserInfoById(int id) async {
   final data = res.data[0];
   return User.fromJson(data);
 }
+
+Future<bool> isUserPresent(String email) async {
+  if (await fetchUserData(email) == null) {
+    return false;
+  }
+  return true;
+}

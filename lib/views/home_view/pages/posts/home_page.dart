@@ -1,6 +1,7 @@
 import 'package:develove/models/post.dart';
 import 'package:develove/services/supabase/posts.dart';
-import 'package:develove/views/post_expanded.dart';
+import 'package:develove/views/home_view/pages/posts/new_post_view.dart';
+import 'package:develove/views/home_view/pages/posts/post_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -93,7 +94,14 @@ class HomePage extends StatelessWidget {
                                                 physics:
                                                     NeverScrollableScrollPhysics(),
                                                 padding: EdgeInsets.zero,
-                                                data: post.content,
+                                                data: post.content.substring(
+                                                        0,
+                                                        post.content.length >
+                                                                200
+                                                            ? 200
+                                                            : post.content
+                                                                .length) +
+                                                    '...',
                                                 shrinkWrap: true,
                                               ),
                                               SizedBox(height: 10),
@@ -154,7 +162,12 @@ class HomePage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: FloatingActionButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NewPostView()));
+                            },
                             child: Icon(Icons.add),
                           ),
                         ),

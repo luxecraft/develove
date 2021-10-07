@@ -6,7 +6,7 @@ Future<bool> isConnected(int tid) async {
       .select('connected')
       .match({'tid': tid}).execute();
   List<dynamic> data = res.data;
-  return data[0]['connected'];
+  return data.length > 0 ? data[0]['connected'] : false;
 }
 
 Future<void> newConnection(int tid) async {
