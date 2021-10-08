@@ -4,7 +4,6 @@ import { ChatFeed, Message } from "react-chat-ui";
 import { supabase } from "../../lib/supabase";
 import Image from "next/image";
 import { useAuth } from "../../lib/auth";
-import { searchUsers } from "../../lib/connection";
 
 export default function GuildDetail() {
   const [messages, setmessages] = useState([]);
@@ -20,11 +19,12 @@ export default function GuildDetail() {
       const fetchedMessages = await supabase
         .from("messages")
         .select()
-        .match({ gid: gid });
+        .match({ gid: gid })
+        .order("mid", { ascending: true });
 
       console.log(fetchedMessages.data);
 
-      fetchedMessages.data.map(async (message, i) => {
+      fetchedMessages?.data?.map(async (message, i) => {
         const sender = await supabase
           .from("users")
           .select("username")
@@ -80,7 +80,8 @@ export default function GuildDetail() {
       text: newClientText,
       uid: thisUID.data[0].uid,
     };
-    await supabase.from("messages").insert(newMessage);
+    const res = await supabase.from("messages").insert(newMessage);
+    console.log(res.status);
     setNewClientText("");
   };
 

@@ -46,12 +46,22 @@ export default function Profile() {
                   }}
                   className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
                 >
-                  Logout
+                  Log Out
                 </button>
               </div>
-              <h1 className="text-md mt-1 font-bold opacity-80">
-                @{thisUser.username}
-              </h1>
+              <div className="flex justify-between mt-4">
+                <h1 className="text-md mt-1 font-bold opacity-80">
+                  @{thisUser.username}
+                </h1>
+                <button
+                  onClick={() => {
+                    router.push("/posts/edit");
+                  }}
+                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
+                >
+                  New Post
+                </button>
+              </div>
               <h1 className="text-md mt-1 font-light opacity-80">
                 {thisUser.email}
               </h1>
