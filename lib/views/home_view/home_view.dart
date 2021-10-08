@@ -45,10 +45,12 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Color(0xFF313131), Color(0xFF282828)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
+        color: Color(0xFF282828),
+
+        // gradient: LinearGradient(
+        //     colors: [Color(0xFF313131), Color(0xFF282828)],
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -123,5 +125,5 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
 
 Future<String> getUserAvatar(String email) async {
   final user = await getUserInfo(email);
-  return await DicebearServices.getAvatar(user!.userName);
+  return await DicebearServices.getUserAvatar(user!.userName);
 }

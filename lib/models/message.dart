@@ -36,4 +36,9 @@ class MessageModel extends ChangeNotifier {
     messages = await fetchMessages(guildId);
     notifyListeners();
   }
+
+  fetchChanges(Map<String, dynamic> data) {
+    messages.add(Message.fromJson(data));
+    notifyListeners();
+  }
 }
