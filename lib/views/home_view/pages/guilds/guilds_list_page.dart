@@ -104,6 +104,7 @@ class NewGuildDialog extends StatelessWidget {
       ),
       title: Text("New Guild"),
       content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text("Guild Name"),
@@ -122,6 +123,8 @@ class NewGuildDialog extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
+          Text("Tag"),
+          SizedBox(height: 5),
           TextField(
             controller: _tagController,
             cursorColor: Colors.grey,

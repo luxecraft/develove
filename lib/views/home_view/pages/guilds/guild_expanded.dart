@@ -23,16 +23,15 @@ class GuildExpandedView extends StatelessWidget {
         print("hai");
         provider.Provider.of<MessageModel>(context, listen: false)
             .fetchChanges(payload.newRecord!);
-        _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-            duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        // _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        //     duration: Duration(milliseconds: 300), curve: Curves.easeIn);
       }
     }).subscribe();
   }
 
   final TextEditingController _messageEditingController =
       TextEditingController();
-  final ScrollController _scrollController =
-      ScrollController(initialScrollOffset: 1.0);
+  final ScrollController _scrollController = ScrollController();
   // bool isValidMessage = false;
 
   @override
