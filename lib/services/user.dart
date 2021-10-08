@@ -20,3 +20,12 @@ Future<bool> isUserPresent(String email) async {
   }
   return true;
 }
+
+Future<bool> isUsernameTaken(String userName) async {
+  final res = await supabase
+      .from('users')
+      .select()
+      .filter('username', 'eq', userName)
+      .execute();
+  return (res.data as List<dynamic>).isEmpty;
+}

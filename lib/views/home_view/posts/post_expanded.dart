@@ -73,44 +73,44 @@ print(list(result))""";
                     //     ),
                     //   ),
                     // ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            splashRadius: 15,
-                            iconSize: 20,
-                            onPressed: () {},
-                            icon: Row(
-                              children: [
-                                Icon(Icons.favorite_border),
-                                SizedBox(width: 2),
-                                Text(post.hearts.toString()),
-                              ],
-                            )),
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            splashRadius: 15,
-                            iconSize: 20,
-                            onPressed: () {},
-                            icon: Icon(Icons.chat_bubble_outline)),
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            splashRadius: 15,
-                            iconSize: 20,
-                            onPressed: () {},
-                            icon: Icon(Icons.keyboard_arrow_up)),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          splashRadius: 15,
-                          iconSize: 20,
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.keyboard_arrow_down,
-                          ),
-                        ),
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     IconButton(
+                    //         padding: EdgeInsets.zero,
+                    //         splashRadius: 15,
+                    //         iconSize: 20,
+                    //         onPressed: () {},
+                    //         icon: Row(
+                    //           children: [
+                    //             Icon(Icons.favorite_border),
+                    //             SizedBox(width: 2),
+                    //             Text(post.hearts.toString()),
+                    //           ],
+                    //         )),
+                    //     IconButton(
+                    //         padding: EdgeInsets.zero,
+                    //         splashRadius: 15,
+                    //         iconSize: 20,
+                    //         onPressed: () {},
+                    //         icon: Icon(Icons.chat_bubble_outline)),
+                    //     IconButton(
+                    //         padding: EdgeInsets.zero,
+                    //         splashRadius: 15,
+                    //         iconSize: 20,
+                    //         onPressed: () {},
+                    //         icon: Icon(Icons.keyboard_arrow_up)),
+                    //     IconButton(
+                    //       padding: EdgeInsets.zero,
+                    //       splashRadius: 15,
+                    //       iconSize: 20,
+                    //       onPressed: () {},
+                    //       icon: Icon(
+                    //         Icons.keyboard_arrow_down,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),

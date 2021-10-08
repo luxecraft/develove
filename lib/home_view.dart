@@ -1,14 +1,12 @@
-import 'package:develove/services/dicebear.dart';
-import 'package:develove/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 
 import 'package:develove/services/supabase/auth/auth_required.dart';
 
-import 'package:develove/views/home_view/pages/explore/explore_page.dart';
-import 'package:develove/views/home_view/pages/guilds/guilds_list_page.dart';
-import 'package:develove/views/home_view/pages/posts/home_page.dart';
-import 'package:develove/views/home_view/pages/profile/profile_page.dart';
+import 'package:develove/views/home_view/explore/explore_page.dart';
+import 'package:develove/views/home_view/guilds/guilds_list_page.dart';
+import 'package:develove/views/home_view/posts/home_page.dart';
+import 'package:develove/views/home_view/profile/profile_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -62,8 +60,7 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
               });
             },
             controller: _pageController,
-            // physics: NeverScrollableScrollPhysics(),
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             children: [
               HomePage(
                 userId: _userId,
@@ -121,9 +118,4 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
       ),
     );
   }
-}
-
-Future<String> getUserAvatar(String email) async {
-  final user = await getUserInfo(email);
-  return await DicebearServices.getUserAvatar(user!.userName);
 }

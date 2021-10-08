@@ -26,6 +26,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
       ),
       child: SafeArea(
         child: Material(
+          color: Color(0xFF282828),
           elevation: 5.0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(

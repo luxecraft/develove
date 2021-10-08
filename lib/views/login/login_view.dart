@@ -1,6 +1,6 @@
 import 'package:develove/services/supabase/auth/auth_state.dart';
 import 'package:develove/services/supabase/constants.dart';
-import 'package:develove/views/home_view/home_view.dart';
+import 'package:develove/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 import 'package:supabase_flutter/src/supabase_auth.dart';

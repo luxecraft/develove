@@ -1,8 +1,11 @@
 import 'package:develove/models/guild.dart';
 import 'package:develove/models/message.dart';
+import 'package:develove/services/dicebear.dart';
 import 'package:develove/services/guilds.dart';
-import 'package:develove/views/home_view/pages/guilds/guild_expanded.dart';
+import 'package:develove/views/home_view/guilds/guild_expanded.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class GuildListPage extends StatelessWidget {
@@ -56,6 +59,7 @@ class GuildListPage extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ListTile(
+                              contentPadding: const EdgeInsets.all(8.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
@@ -74,6 +78,26 @@ class GuildListPage extends StatelessWidget {
                                               );
                                             })));
                               },
+                              leading: FutureBuilder(
+                                  future: DicebearServices.getAvatar(
+                                      AvatarType.bottts, guild.gid.toString()),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                            ConnectionState.done &&
+                                        snapshot.hasData) {
+                                      print(snapshot.data.toString());
+                                      return SvgPicture.string(
+                                        snapshot.data.toString(),
+                                        height: 70,
+                                        width: 70,
+                                      );
+                                    } else {
+                                      return SizedBox(
+                                        height: 70,
+                                        width: 70,
+                                      );
+                                    }
+                                  }),
                               title: Text(guild.name),
                               trailing: Icon(Icons.arrow_forward_ios),
                             ),

@@ -4,7 +4,7 @@ import 'package:develove/models/user.dart' as userModel;
 import 'package:develove/services/guilds.dart';
 import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/services/user.dart';
-import 'package:develove/views/home_view/pages/guilds/guild_info_view.dart';
+import 'package:develove/views/home_view/guilds/guild_info_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:supabase/supabase.dart';
@@ -93,40 +93,87 @@ class GuildExpandedView extends StatelessWidget {
                                           context)
                                       .messages[position];
                                   final fromMe = user.uid == e.uid;
-                                  return Row(
-                                    mainAxisAlignment: fromMe
-                                        ? MainAxisAlignment.end
-                                        : MainAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Material(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                          ),
-                                          color: fromMe
-                                              ? Color(0xFF6ECD95)
-                                              : Colors.white,
-                                          child: Container(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                e.text,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1
-                                                    ?.apply(
-                                                      color: Colors.black,
+                                  return LayoutBuilder(
+                                      builder: (context, constrainsts) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment: fromMe
+                                            ? CrossAxisAlignment.end
+                                            : CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            // mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: fromMe
+                                                ? MainAxisAlignment.end
+                                                : MainAxisAlignment.start,
+                                            children: [
+                                              Material(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                ),
+                                                color: fromMe
+                                                    ? Color(0xFF6ECD95)
+                                                    : Colors.white,
+                                                child: Container(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: ConstrainedBox(
+                                                      constraints: BoxConstraints(
+                                                          maxWidth: constrainsts
+                                                                  .maxWidth *
+                                                              0.7),
+                                                      child: Text(
+                                                        e.text,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1
+                                                            ?.apply(
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                      ),
                                                     ),
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        ),
+                                          FutureBuilder(
+                                              future: getUserInfoById(e.uid),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                        ConnectionState.done &&
+                                                    snapshot.hasData) {
+                                                  return Text(
+                                                    (snapshot.data
+                                                            as userModel.User)
+                                                        .userName,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2
+                                                        ?.apply(
+                                                            fontSizeDelta: -5),
+                                                  );
+                                                } else {
+                                                  return Text(
+                                                    "",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2
+                                                        ?.apply(
+                                                            fontSizeDelta: -5),
+                                                  );
+                                                }
+                                              }),
+                                        ],
                                       ),
-                                    ],
-                                  );
+                                    );
+                                  });
                                 }));
                       } else {
                         return Container();

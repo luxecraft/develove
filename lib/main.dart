@@ -1,7 +1,7 @@
-import 'package:develove/views/home_view/home_view.dart';
-import 'package:develove/views/login_view.dart';
-import 'package:develove/views/new_user_view.dart';
-import 'package:develove/views/splash_view.dart';
+import 'package:develove/home_view.dart';
+import 'package:develove/views/login/login_view.dart';
+import 'package:develove/views/login/new_user_view.dart';
+import 'package:develove/views/login/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

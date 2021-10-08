@@ -1,10 +1,10 @@
 import 'package:develove/models/user.dart';
+import 'package:develove/services/dicebear.dart';
 import 'package:develove/services/shared_preferences.dart';
 import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/services/user.dart';
-import 'package:develove/views/home_view/home_view.dart';
-import 'package:develove/views/home_view/pages/profile/connection_list_view.dart';
-import 'package:develove/views/home_view/pages/profile/profile_edit_view.dart';
+import 'package:develove/views/home_view/profile/connection_list_view.dart';
+import 'package:develove/views/home_view/profile/profile_edit_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -76,8 +76,8 @@ class ProfilePage extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: FutureBuilder(
-                                              future: getUserAvatar(supabase
-                                                  .auth.currentUser!.email!),
+                                              future: DicebearServices
+                                                  .getUserAvatar(user.userName),
                                               builder: (context, snapshot) {
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.done) {

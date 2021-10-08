@@ -2,7 +2,7 @@ import 'package:develove/models/user.dart';
 import 'package:develove/services/supabase/connection.dart';
 import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/services/typesense/search_users.dart';
-import 'package:develove/views/home_view/pages/explore/connection_view.dart';
+import 'package:develove/views/home_view/explore/connection_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
