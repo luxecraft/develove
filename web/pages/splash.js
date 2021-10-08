@@ -1,66 +1,72 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
+import { useAuth } from "../lib/auth";
+import { useRouter } from "next/dist/client/router";
+import { searchUsers } from "../lib/connection";
 export default function Splash() {
+  const { currentUser } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (currentUser) {
+      searchUsers(currentUser.email).then((res) => {
+        if (res == -1) {
+          router.push("/onboarding");
+        } else {
+          router.push("/home");
+        }
+      });
+    }
+  }, [currentUser, router]);
   return (
-    <div className="">
-      <div className="flex flex-col justify-center items-center p-40">
+    <div className="flex justify-center text-center">
+      <div className="px-40 mt-20">
         <Image src="/logo.svg" alt="Logo" height={400} width={400} />
-        <p className="text-primary-solid text-2xl font-bold">
-          Ex nisi proident laborum culpa tempor mollit eu amet voluptate.
-          Cupidatat pariatur magna qui est aliquip. Veniam pariatur eu deserunt
-          duis aute voluptate labore laborum deserunt. Proident excepteur
-          officia Lorem Lorem commodo.
-          <br />
-          <br />
-          Veniam veniam amet adipisicing adipisicing quis amet nisi eu labore
-          non voluptate exercitation. Ex exercitation anim ullamco elit non
-          laboris fugiat nulla eiusmod ex laboris fugiat. Quis sunt laboris in
-          occaecat incididunt esse pariatur ea do. Qui reprehenderit amet est
-          esse adipisicing ullamco excepteur do elit aliqua elit nisi. Do tempor
-          sit et consectetur nisi.
-          <br /> <br />
-          Ad in adipisicing excepteur eiusmod nisi eiusmod aliqua nisi eiusmod
-          proident proident. Adipisicing nisi irure sint deserunt anim aute et
-          exercitation ad incididunt cillum veniam magna quis. Laborum ipsum
-          occaecat proident duis. Dolor anim cillum proident ipsum. Quis amet
-          nostrud quis elit nisi elit ullamco proident labore aliquip deserunt
-          esse ullamco officia. Nostrud ut anim enim ad dolor pariatur elit
-          aliquip eiusmod sit magna nisi.
-          <br />
-          <br /> Do nostrud aute non consectetur nostrud veniam aliqua ut culpa
-          velit ut reprehenderit voluptate id. Pariatur incididunt proident non
-          cupidatat consequat Lorem elit ea occaecat. Exercitation eiusmod ex ad
-          dolor tempor dolor consequat esse elit dolore pariatur fugiat nulla
-          velit.
-        </p>
-
-        <p className="text-primary-solid text-2xl font-bold">
-          Ex nisi proident laborum culpa tempor mollit eu amet voluptate.
-          Cupidatat pariatur magna qui est aliquip. Veniam pariatur eu deserunt
-          duis aute voluptate labore laborum deserunt.
-          <br />
-          <br /> Proident excepteur officia Lorem Lorem commodo. Veniam veniam
-          amet adipisicing adipisicing quis amet nisi eu labore non voluptate
-          exercitation. Ex exercitation anim ullamco elit non laboris fugiat
-          nulla eiusmod ex laboris fugiat. Quis sunt laboris in occaecat
-          incididunt esse pariatur ea do. Qui reprehenderit amet est esse
-          adipisicing ullamco excepteur do elit aliqua elit nisi.
-          <br />
-          <br /> Do tempor sit et consectetur nisi. Ad in adipisicing excepteur
-          eiusmod nisi eiusmod aliqua nisi eiusmod proident proident.
-          Adipisicing nisi irure sint deserunt anim aute et exercitation ad
-          incididunt cillum veniam magna quis. Laborum ipsum occaecat proident
-          duis. Dolor anim cillum proident ipsum. Quis amet nostrud quis elit
-          nisi elit ullamco proident labore aliquip deserunt esse ullamco
-          officia. Nostrud ut anim enim ad dolor pariatur elit aliquip eiusmod
-          sit magna nisi.
-          <br />
-          <br /> Do nostrud aute non consectetur nostrud veniam aliqua ut culpa
-          velit ut reprehenderit voluptate id. Pariatur incididunt proident non
-          cupidatat consequat Lorem elit ea occaecat. Exercitation eiusmod ex ad
-          dolor tempor dolor consequat esse elit dolore pariatur fugiat nulla
-          velit.
-        </p>
+        <h1 className="text-5xl font-mono font-bold text-center text-white">
+          Hey there 👋🏽 welcome to Develove 🧑🏾‍💻
+        </h1>
+        <br />
+        <div className="flex items-center justify-center mt-20">
+          <p className="text-xl font-mono font-light w-8/12 text-left mr-20 text-white">
+            Here in Develove, you can meet and hangout with developers from all
+            around the world. Excepteur tempor voluptate aute irure nulla
+            nostrud laboris incididunt officia. Ex tempor consectetur mollit
+            consectetur anim officia commodo reprehenderit dolor et eu
+            consectetur ad aliqua. Mollit amet Lorem excepteur proident nostrud
+            pariatur adipisicing. Minim amet eu fugiat ut sint proident esse
+            nulla. Laborum tempor irure dolor est elit ullamco occaecat laborum
+            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
+            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+          </p>
+          <Image src="/earth.svg" alt="Earth" height={400} width={400} />
+        </div>
+        <div className="flex items-center justify-center mt-20">
+          <Image src="/search.svg" alt="Earth" height={400} width={400} />
+          <p className="text-xl font-mono font-light w-8/12 text-right ml-20 text-white">
+            Search them up using the interactive map, or shoot them a DM. You
+            might get lucky! Excepteur tempor voluptate aute irure nulla nostrud
+            laboris incididunt officia. Ex tempor consectetur mollit consectetur
+            anim officia commodo reprehenderit dolor et eu consectetur ad
+            aliqua. Mollit amet Lorem excepteur proident nostrud pariatur
+            adipisicing. Minim amet eu fugiat ut sint proident esse nulla.
+            Laborum tempor irure dolor est elit ullamco occaecat laborum
+            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
+            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+          </p>
+        </div>
+        <div className="flex items-center justify-center my-20">
+          <p className="text-xl font-mono font-light w-8/12 text-left mr-20 text-white">
+            Meet people tailored to your interests, build hype, and new friends
+            using Develove. Excepteur tempor voluptate aute irure nulla nostrud
+            laboris incididunt officia. Ex tempor consectetur mollit consectetur
+            anim officia commodo reprehenderit dolor et eu consectetur ad
+            aliqua. Mollit amet Lorem excepteur proident nostrud pariatur
+            adipisicing. Minim amet eu fugiat ut sint proident esse nulla.
+            Laborum tempor irure dolor est elit ullamco occaecat laborum
+            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
+            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+          </p>
+          <Image src="/tastes.svg" alt="Earth" height={400} width={400} />
+        </div>
       </div>
     </div>
   );
