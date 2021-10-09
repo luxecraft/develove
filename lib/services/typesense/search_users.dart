@@ -24,7 +24,7 @@ Future<Map<String, dynamic>> searchConnections(String search) async {
   return res;
 }
 
-void main() async {
-  final res = await searchConnections('hari');
-  print(res);
-}
+// void main() async {
+//   final res = await searchConnections('hari');
+//   print(res);
+// }
