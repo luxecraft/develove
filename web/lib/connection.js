@@ -15,6 +15,11 @@ export async function newConnection(tid) {
   console.log(res.data);
 }
 
+export async function getCurrentUser(email) {
+  let userRes = await supabase.from("users").select().match({ email: email });
+  return userRes.data[0];
+}
+
 export async function acceptConnection(tid) {
   let currentUser = supabase.auth.user().email;
   let userRes = await supabase
@@ -35,8 +40,8 @@ export async function acceptConnection(tid) {
     connected: true,
   };
   res = await supabase.from("connections").insert(data);
-  print(userRes.data);
-  print(res.data);
+  console.log(userRes.data);
+  console.log(res.data);
 }
 
 export async function getConnections() {
@@ -86,11 +91,16 @@ export async function rejectConnection(tid) {
   };
 
   let res = await supabase.from("connections").delete().match(data);
-  print(userRes.data);
-  print(res.data);
+  console.log(userRes.data);
+  console.log(res.data);
 }
 
 export async function getUser(tid) {
   let res = await supabase.from("users").select().match({ uid: tid });
   return res.data[0];
+}
+
+export async function signOut() {
+  let res = await supabase.auth.signOut();
+  console.log(res.data);
 }

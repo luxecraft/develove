@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "./supabase";
+
 const AuthContext = createContext();
 
 export function useAuth() {
@@ -24,7 +25,7 @@ export function AuthProvider({ children }) {
     }
     supabase.auth.onAuthStateChange((event, session) => {
       console.log(session);
-      setCurrentUser(session.user);
+      setCurrentUser(session?.user);
     });
     setLoading(false);
   }, []);
