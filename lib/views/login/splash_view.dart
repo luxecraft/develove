@@ -29,97 +29,88 @@ class _SplashScreenState extends AuthState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0xFF282828),
-        // gradient: LinearGradient(
-        //     colors: [Color(0xFF313131), Color(0xFF282828)],
-        //     begin: Alignment.topLeft,
-        //     end: Alignment.bottomRight),
-      ),
-      child: Scaffold(
-        body: SafeArea(
-            child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                physics: BouncingScrollPhysics(),
-                pageSnapping: true,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                controller: _pageController,
-                children: _pages,
-              ),
+    return Scaffold(
+      body: SafeArea(
+          child: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              physics: BouncingScrollPhysics(),
+              pageSnapping: true,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              controller: _pageController,
+              children: _pages,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  DotsIndicator(
-                    controller: _pageController,
-                    itemCount: _pages.length,
-                    color: Color(0xFF57AF70),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _currentPage == 0
-                          ? TextButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginView()),
-                                    (route) => false);
-                              },
-                              child: Text(
-                                "Skip",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ))
-                          : TextButton(
-                              onPressed: () {
-                                _pageController.previousPage(
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.easeIn);
-                              },
-                              child: Text(
-                                "Back",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              )),
-                      _currentPage == _pages.length - 1
-                          ? TextButton(
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginView()),
-                                    (route) => false);
-                              },
-                              child: Text(
-                                "Done",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ))
-                          : TextButton(
-                              onPressed: () {
-                                _pageController.nextPage(
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.easeIn);
-                              },
-                              child: Text(
-                                "Next",
-                                style: Theme.of(context).textTheme.subtitle1,
-                              )),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        )),
-      ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                DotsIndicator(
+                  controller: _pageController,
+                  itemCount: _pages.length,
+                  color: Color(0xFF57AF70),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _currentPage == 0
+                        ? TextButton(
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginView()),
+                                  (route) => false);
+                            },
+                            child: Text(
+                              "Skip",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ))
+                        : TextButton(
+                            onPressed: () {
+                              _pageController.previousPage(
+                                  duration: Duration(milliseconds: 250),
+                                  curve: Curves.easeIn);
+                            },
+                            child: Text(
+                              "Back",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            )),
+                    _currentPage == _pages.length - 1
+                        ? TextButton(
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginView()),
+                                  (route) => false);
+                            },
+                            child: Text(
+                              "Done",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ))
+                        : TextButton(
+                            onPressed: () {
+                              _pageController.nextPage(
+                                  duration: Duration(milliseconds: 250),
+                                  curve: Curves.easeIn);
+                            },
+                            child: Text(
+                              "Next",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            )),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      )),
     );
   }
 }
