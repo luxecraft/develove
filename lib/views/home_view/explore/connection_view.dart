@@ -29,9 +29,10 @@ class ConnectionView extends StatelessWidget {
                       height: 200,
                       child: Card(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                            side: BorderSide(
-                                width: 1.0, color: Color(0xFF6ECD95))),
+                          borderRadius: BorderRadius.circular(15.0),
+                          // side: BorderSide(
+                          //     width: 1.0, color: Color(0xFF6ECD95)),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(

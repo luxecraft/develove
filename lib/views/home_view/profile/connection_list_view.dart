@@ -35,9 +35,10 @@ class ConnectionListView extends StatelessWidget {
                               tileColor: Color(0xFF474747),
                               contentPadding: EdgeInsets.all(8.0),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  side: BorderSide(
-                                      width: 1.0, color: Color(0xFF6ECD95))),
+                                borderRadius: BorderRadius.circular(15.0),
+                                // side: BorderSide(
+                                //     width: 1.0, color: Color(0xFF6ECD95)),
+                              ),
                               onTap: () {},
                               leading: FutureBuilder(
                                   future: http.get(Uri.parse(

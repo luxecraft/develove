@@ -1,3 +1,4 @@
+import 'package:develove/views/home_view/explore/new_explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 
@@ -55,7 +56,8 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
             HomePage(
               userId: _userId,
             ),
-            ExplorePage(),
+            // ExplorePage(),
+            NewExplorePage(),
             GuildListPage(),
             ProfilePage()
           ],
