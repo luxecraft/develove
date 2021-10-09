@@ -1,6 +1,6 @@
 import 'package:develove/models/post.dart';
 import 'package:develove/services/supabase/posts.dart';
-import 'package:develove/views/home_view/pages/posts/post_expanded.dart';
+import 'package:develove/views/home_view/posts/post_expanded_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
@@ -21,11 +21,10 @@ class HomePage extends StatelessWidget {
                 create: (_) => PostModel(posts),
                 builder: (context, _) {
                   return NestedScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: NeverScrollableScrollPhysics(),
                     headerSliverBuilder: (context, isScrolled) => [
                       SliverAppBar(
                         elevation: 1.0,
-                        backgroundColor: Color(0xFF282828),
                         pinned: true,
                         centerTitle: true,
                         title: Image.asset(
@@ -96,47 +95,47 @@ class HomePage extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            splashRadius: 15,
-                                            iconSize: 20,
-                                            onPressed: () {},
-                                            icon: Row(
-                                              children: [
-                                                Icon(Icons.favorite_border),
-                                                SizedBox(width: 2),
-                                                Text(post.hearts.toString()),
-                                              ],
-                                            )),
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            splashRadius: 15,
-                                            iconSize: 20,
-                                            onPressed: () {},
-                                            icon: Icon(
-                                                Icons.chat_bubble_outline)),
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            splashRadius: 15,
-                                            iconSize: 20,
-                                            onPressed: () {},
-                                            icon:
-                                                Icon(Icons.keyboard_arrow_up)),
-                                        IconButton(
-                                          padding: EdgeInsets.zero,
-                                          splashRadius: 15,
-                                          iconSize: 20,
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.keyboard_arrow_down,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     IconButton(
+                                    //         padding: EdgeInsets.zero,
+                                    //         splashRadius: 15,
+                                    //         iconSize: 20,
+                                    //         onPressed: () {},
+                                    //         icon: Row(
+                                    //           children: [
+                                    //             Icon(Icons.favorite_border),
+                                    //             SizedBox(width: 2),
+                                    //             Text(post.hearts.toString()),
+                                    //           ],
+                                    //         )),
+                                    //     IconButton(
+                                    //         padding: EdgeInsets.zero,
+                                    //         splashRadius: 15,
+                                    //         iconSize: 20,
+                                    //         onPressed: () {},
+                                    //         icon: Icon(
+                                    //             Icons.chat_bubble_outline)),
+                                    //     IconButton(
+                                    //         padding: EdgeInsets.zero,
+                                    //         splashRadius: 15,
+                                    //         iconSize: 20,
+                                    //         onPressed: () {},
+                                    //         icon:
+                                    //             Icon(Icons.keyboard_arrow_up)),
+                                    //     IconButton(
+                                    //       padding: EdgeInsets.zero,
+                                    //       splashRadius: 15,
+                                    //       iconSize: 20,
+                                    //       onPressed: () {},
+                                    //       icon: Icon(
+                                    //         Icons.keyboard_arrow_down,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               ),

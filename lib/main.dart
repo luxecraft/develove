@@ -1,7 +1,7 @@
-import 'package:develove/views/home_view/home_view.dart';
-import 'package:develove/views/login_view.dart';
-import 'package:develove/views/new_user_view.dart';
-import 'package:develove/views/splash_view.dart';
+import 'package:develove/home_view.dart';
+import 'package:develove/views/login/login_view.dart';
+import 'package:develove/views/login/new_user_view.dart';
+import 'package:develove/views/login/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -32,6 +32,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        backgroundColor: Color(0xFF282828),
         cardTheme: CardTheme(
           color: Color(0xFF474747),
         ),
@@ -46,7 +47,7 @@ class App extends StatelessWidget {
             statusBarBrightness: Brightness.dark,
           ),
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xFF282828),
         ),
         primarySwatch: Colors.green,
         primaryTextTheme: Theme.of(context)
@@ -54,7 +55,7 @@ class App extends StatelessWidget {
             .apply(displayColor: Color(0xFFDCDCDC), bodyColor: Colors.white),
         fontFamily: "Montserrat",
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.transparent,
+        scaffoldBackgroundColor: Color(0xFF282828),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           elevation: 10.0,
           showSelectedLabels: false,

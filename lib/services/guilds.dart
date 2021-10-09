@@ -29,7 +29,9 @@ Future<List<Message>> fetchMessages(int guildId) async {
       .filter('gid', 'eq', guildId)
       .execute();
 
-  return (res.data as List<dynamic>).map((e) => Message.fromJson(e)).toList();
+  return (res.data as List<dynamic>).map((e) {
+    return Message.fromJson(e);
+  }).toList();
 }
 
 Future<void> createNewGuild(String guildName, List<String> tags) async {
