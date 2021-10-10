@@ -34,9 +34,7 @@ We are a team of 3.
 
 <p align="middle">
   <img src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/heartmap.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvaGVhcnRtYXAucG5nIiwiaWF0IjoxNjMzODg4MDk2LCJleHAiOjE5NDkyNDgwOTZ9.dmxtvL-L_jci-mDCh8wXU3I1UqQouz8rHgFKibTp17g" alt="heartmap" height="200px"/>
-  <img width="100px"/>
   <img src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/taste.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdGFzdGUucG5nIiwiaWF0IjoxNjMzODg4ODQzLCJleHAiOjE5NDkyNDg4NDN9.3eeGhwu2856Pero-UycDHpGbsr3dcM33CXsUYzmquRo" alt="tastes" height="200px"/>
-  <img width="100px"/>
   <img src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/searcg.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvc2VhcmNnLnBuZyIsImlhdCI6MTYzMzg4ODgzMSwiZXhwIjoxOTQ5MjQ4ODMxfQ.FCEOf1Ms16LqKUbq4VPP-VJrCujDpFjQtVBi04XdB4k" alt="search" height="200px"/>
 </p>
 
