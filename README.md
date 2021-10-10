@@ -1,6 +1,7 @@
 # Develove 🧑🏾‍💻
 
-> Demo link: [Develove](https://develove.luxecraft.org/)
+> Demo link: [Develove](https://develove.luxecraft.org/) <br/>
+> App release: [Develove.apk](https://github.com/luxecraft/develove/releases/tag/v0.0.2-alpha)
 <p align="center">
   <img alt="logo" src="https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvbG9nby5wbmciLCJpYXQiOjE2MzM4ODg0MTIsImV4cCI6MTk0OTI0ODQxMn0.84dDS-HB6bScz36SnzHnVrn9cxVMgJlhh7onctx4Wfo" height="300px"/>
 </p>
