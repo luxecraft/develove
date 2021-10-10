@@ -35,7 +35,7 @@ export default function Signup() {
           <div>
             <button
               onClick={() => signUpWithGithub()}
-              className="h-12 w-6/12 bg-white rounded-md my-5 p-2"
+              className="h-12 w-6/12 bg-white rounded-md my-5 mb-16 p-2"
             >
               <div className="flex px-12 items-center">
                 <Image src="/github.png" alt="github" height="25" width="25" />
@@ -45,7 +45,7 @@ export default function Signup() {
               </div>
             </button>
           </div>
-          <div>
+          {/* <div>
             <button className="h-12 w-6/12 bg-white rounded-md my-5 mb-16 p-2">
               <div className="flex px-12 items-center">
                 <Image src="/apple.png" alt="apple" height="25" width="25" />
@@ -54,7 +54,7 @@ export default function Signup() {
                 </p>
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
