@@ -1,10 +1,10 @@
 import 'package:develove/models/user.dart';
+import 'package:develove/services/dicebear.dart';
 import 'package:develove/services/shared_preferences.dart';
 import 'package:develove/services/supabase/constants.dart';
 import 'package:develove/services/user.dart';
-import 'package:develove/views/home_view/home_view.dart';
-import 'package:develove/views/home_view/pages/profile/connection_list_view.dart';
-import 'package:develove/views/home_view/pages/profile/profile_edit_view.dart';
+import 'package:develove/views/home_view/profile/connection_list_view.dart';
+// import 'package:develove/views/home_view/profile/profile_edit_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,15 +24,15 @@ class ProfilePage extends StatelessWidget {
                 AppBar(
                   title: Text("Profile"),
                   actions: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ProfileEditView()));
-                      },
-                      icon: Icon(Icons.edit_outlined),
-                    ),
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (_) => ProfileEditView()));
+                    //   },
+                    //   icon: Icon(Icons.edit_outlined),
+                    // ),
                     IconButton(
                       onPressed: () async {
                         await SharedPreferencesService
@@ -58,9 +58,10 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Card(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                            side: BorderSide(
-                                width: 1.0, color: Color(0xFF6ECD95))),
+                          borderRadius: BorderRadius.circular(15.0),
+                          // side: BorderSide(
+                          //     width: 1.0, color: Color(0xFF6ECD95),)
+                        ),
                         child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -76,8 +77,8 @@ class ProfilePage extends StatelessWidget {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: FutureBuilder(
-                                              future: getUserAvatar(supabase
-                                                  .auth.currentUser!.email!),
+                                              future: DicebearServices
+                                                  .getUserAvatar(user.userName),
                                               builder: (context, snapshot) {
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.done) {

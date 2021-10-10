@@ -8,12 +8,13 @@ class Message {
   late int gid;
   late int uid;
 
-  Message(
-      {required this.mid,
-      required this.gid,
-      required String createdAt,
-      required this.text,
-      required this.uid}) {
+  Message({
+    required this.mid,
+    required this.gid,
+    required String createdAt,
+    required this.text,
+    required this.uid,
+  }) {
     this.createdAt = DateTime.tryParse(createdAt)!;
   }
 

@@ -10,8 +10,12 @@ Future<User?> getUserInfo(String email) async {
 Future<User?> getUserInfoById(int id) async {
   final res =
       await supabase.from('users').select().filter('uid', 'eq', id).execute();
-  final data = res.data[0];
-  return User.fromJson(data);
+  if ((res.data as List<dynamic>).isNotEmpty) {
+    final data = res.data[0];
+    return User.fromJson(data);
+  } else {
+    return null;
+  }
 }
 
 Future<bool> isUserPresent(String email) async {
@@ -19,4 +23,13 @@ Future<bool> isUserPresent(String email) async {
     return false;
   }
   return true;
+}
+
+Future<bool> isUsernameTaken(String userName) async {
+  final res = await supabase
+      .from('users')
+      .select()
+      .filter('username', 'eq', userName)
+      .execute();
+  return (res.data as List<dynamic>).isEmpty;
 }
