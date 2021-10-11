@@ -115,23 +115,14 @@ export default function GuildDetail() {
       <input
         value={newClientText}
         onChange={handleChange}
-        placeholder="Type a message"
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
+        placeholder="Type a message and hit return"
         className="w-9/12 fixed bottom-10 bg-accentGray rounded-xl h-14 mt-10 text-white p-4 text-lg focus:outline-none"
       />
-      <div className="w-full flex justify-end">
-        <div
-          onClick={() => handleSubmit()}
-          className="fixed flex items-center pr-3 cursor-pointer hover:opacity-70 justify-center bottom-10 float-right rounded-r-xl bg-primary-solid h-14 w-20"
-        >
-          <Image
-            className="transform rotate-45"
-            src="/send.svg"
-            alt="send"
-            height="30"
-            width="30"
-          />
-        </div>
-      </div>
     </div>
   );
 }
