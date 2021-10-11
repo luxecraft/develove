@@ -8,7 +8,7 @@ function SearchBar({ currentRefinement, refine, placeholder = "Search" }) {
   return (
     <div className="w-full flex justify-center">
       <div className="absolute w-8/12 h-14 flex justify-end items-center ">
-        <div className="bg-secondary-solid z-20 h-14 w-1/6 rounded-r-lg flex items-center divide-x divide-white">
+        <div className="bg-secondary-solid z-20 h-14 w-1/6 rounded-r-lg flex items-center divide-x divide-white divide-opacity-40">
           <button
             onClick={() => router.push("/explore/people")}
             className="w-1/2 h-full hover:bg-primary-solid"
@@ -20,7 +20,7 @@ function SearchBar({ currentRefinement, refine, placeholder = "Search" }) {
           </button>
           <button
             onClick={() => router.push("/explore/blog")}
-            className="w-1/2 h-full hover:bg-primary-solid hover:rounded-r-lg"
+            className="w-1/2 h-full hover:bg-primary-solid rounded-r-lg"
           >
             <div className="text-sm">📰</div>
             <div className="text-sm font-mono font-medium text-white">Blog</div>

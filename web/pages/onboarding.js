@@ -1,5 +1,5 @@
 import { useRouter } from "next/dist/client/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/auth";
 import { updateUser } from "../lib/signupComplete";
 
@@ -11,10 +11,16 @@ export default function OnBoarding() {
   });
 
   const router = useRouter();
-
+  const { currentUser } = useAuth();
   const handleChange = (e) => {
     setUserObject({ ...userObject, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/");
+    }
+  }, [router, currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,11 +41,12 @@ export default function OnBoarding() {
             Full Name
           </label>
           <input
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 focus:outline-none"
             name="fullName"
             value={userObject.fullName}
             onChange={handleChange}
             required
+            placeholder="Full Name"
           />
         </div>
         <div className="my-5">
@@ -62,11 +69,12 @@ export default function OnBoarding() {
             <option value="express">Express</option>
           </select> */}
           <input
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 focus:outline-none"
             name="tags"
             value={userObject.tags}
             onChange={handleChange}
             required
+            placeholder="Enter , separated values"
           />
         </div>
         <div className="my-5">
@@ -74,11 +82,12 @@ export default function OnBoarding() {
             Username
           </label>
           <input
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 focus:outline-none"
             name="username"
             value={userObject.username}
             onChange={handleChange}
             required
+            placeholder="Username"
           />
         </div>
 

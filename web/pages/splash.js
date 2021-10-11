@@ -26,44 +26,23 @@ export default function Splash() {
         </h1>
         <br />
         <div className="flex items-center justify-center mt-20">
-          <p className="text-xl font-mono font-light w-8/12 text-left mr-20 text-white">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Here in Develove, you can meet and hangout with developers from all
-            around the world. Excepteur tempor voluptate aute irure nulla
-            nostrud laboris incididunt officia. Ex tempor consectetur mollit
-            consectetur anim officia commodo reprehenderit dolor et eu
-            consectetur ad aliqua. Mollit amet Lorem excepteur proident nostrud
-            pariatur adipisicing. Minim amet eu fugiat ut sint proident esse
-            nulla. Laborum tempor irure dolor est elit ullamco occaecat laborum
-            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
-            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+            around the world.
           </p>
           <Image src="/earth.svg" alt="Earth" height={400} width={400} />
         </div>
         <div className="flex items-center justify-center mt-20">
           <Image src="/search.svg" alt="Earth" height={400} width={400} />
-          <p className="text-xl font-mono font-light w-8/12 text-right ml-20 text-white">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left ml-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Search them up using the interactive map, or shoot them a DM. You
-            might get lucky! Excepteur tempor voluptate aute irure nulla nostrud
-            laboris incididunt officia. Ex tempor consectetur mollit consectetur
-            anim officia commodo reprehenderit dolor et eu consectetur ad
-            aliqua. Mollit amet Lorem excepteur proident nostrud pariatur
-            adipisicing. Minim amet eu fugiat ut sint proident esse nulla.
-            Laborum tempor irure dolor est elit ullamco occaecat laborum
-            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
-            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+            might get lucky!
           </p>
         </div>
         <div className="flex items-center justify-center my-20">
-          <p className="text-xl font-mono font-light w-8/12 text-left mr-20 text-white">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Meet people tailored to your interests, build hype, and new friends
-            using Develove. Excepteur tempor voluptate aute irure nulla nostrud
-            laboris incididunt officia. Ex tempor consectetur mollit consectetur
-            anim officia commodo reprehenderit dolor et eu consectetur ad
-            aliqua. Mollit amet Lorem excepteur proident nostrud pariatur
-            adipisicing. Minim amet eu fugiat ut sint proident esse nulla.
-            Laborum tempor irure dolor est elit ullamco occaecat laborum
-            reprehenderit nostrud voluptate eiusmod culpa. Laboris sunt ad ex
-            adipisicing mollit mollit minim laborum enim do dolore do eu sint.
+            using Develove.
           </p>
           <Image src="/tastes.svg" alt="Earth" height={400} width={400} />
         </div>

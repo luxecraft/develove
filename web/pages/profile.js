@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/auth";
-import { getCurrentUser, signOut } from "../lib/connection";
+import { getCurrentUser, searchUsers, signOut } from "../lib/connection";
 import Image from "next/image";
 import { useRouter } from "next/dist/client/router";
 
@@ -10,16 +10,23 @@ export default function Profile() {
   const router = useRouter();
 
   useEffect(() => {
-    if (currentUser)
-      getCurrentUser(currentUser.email).then((user) => {
-        setThisUser(user);
+    if (currentUser) {
+      searchUsers(currentUser.email).then((res) => {
+        if (res == -1) {
+          router.push("/onboarding");
+        } else {
+          getCurrentUser(currentUser.email).then((user) => {
+            setThisUser(user);
+          });
+        }
       });
+    }
     console.log(currentUser);
-  }, [currentUser]);
+  }, [currentUser, router]);
 
   return (
     <div className="flex justify-center">
-      <div className="mt-40 w-5/12 flex p-10 bg-gradient-to-br from-primary-start to-primary-end rounded-lg shadow-lg">
+      <div className="mt-40 md:w-9/12 w-8/12 xl:w-1/2 flex p-10 bg-gradient-to-br from-primary-start to-primary-end rounded-lg shadow-lg">
         {thisUser ? (
           <>
             <Image
@@ -35,36 +42,47 @@ export default function Profile() {
             />
             <div className="ml-10 w-full">
               <div className="flex justify-between">
-                <h1 className="text-4xl font-mono font-semibold">
-                  {thisUser.fullName}
-                </h1>
-                <button
-                  onClick={() => {
-                    signOut().then(() => {
-                      router.push("/splash");
-                    });
-                  }}
-                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
-                >
-                  Log Out
-                </button>
+                <div>
+                  <h1 className="text-4xl font-mono font-semibold">
+                    {thisUser.fullName}
+                  </h1>
+                  <h1 className="text-md mt-1 font-bold opacity-80">
+                    @{thisUser.username}
+                  </h1>
+                  <h1 className="text-md mt-1 font-bold opacity-80">
+                    {thisUser.email}
+                  </h1>
+                </div>
+
+                <div>
+                  <button
+                    onClick={() => {
+                      router.push("/posts/edit");
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
+                  >
+                    New Post
+                  </button>
+                  <button
+                    onClick={() => {
+                      router.push("/edituser");
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-8 rounded-lg"
+                  >
+                    Edit User
+                  </button>
+                  <button
+                    onClick={() => {
+                      signOut().then(() => {
+                        router.push("/splash");
+                      });
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-danger-start to-danger-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+                  >
+                    Log Out
+                  </button>
+                </div>
               </div>
-              <div className="flex justify-between mt-4">
-                <h1 className="text-md mt-1 font-bold opacity-80">
-                  @{thisUser.username}
-                </h1>
-                <button
-                  onClick={() => {
-                    router.push("/posts/edit");
-                  }}
-                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
-                >
-                  New Post
-                </button>
-              </div>
-              <h1 className="text-md mt-1 font-light opacity-80">
-                {thisUser.email}
-              </h1>
               <div className="mt-4">
                 {thisUser.tags.map((tag, i) => {
                   if (i < 4)
