@@ -3,10 +3,14 @@ import Image from "next/image";
 import { supabase } from "../lib/supabase";
 import { truncatePost } from "../lib/utils";
 import Link from "next/link";
+import { useAuth } from "../lib/auth";
+import { useRouter } from "next/dist/client/router";
 
 export default function Home() {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchPost() {
@@ -25,15 +29,32 @@ export default function Home() {
   }, [posts]);
 
   useEffect(() => {
+    if (!currentUser) {
+      router.push("/splash");
+    }
+  }, [currentUser, router]);
+
+  useEffect(() => {
     console.log(posts);
   }, [posts]);
 
   return (
     <div>
       <div className="px-40 flex flex-col items-center justify-between">
-        <h1 className="text-5xl font-bold font-mono text-white my-10">
-          Good Morning 🌥&nbsp;🗞
-        </h1>
+        <div className="flex flex-row items-center justify-between w-1/2">
+          <h1 className="text-5xl font-bold font-mono text-white my-10">
+            Good Morning 🌥&nbsp;🗞
+          </h1>
+          <button
+            onClick={() => {
+              router.push("/posts/edit");
+            }}
+            className="h-10 bg-gradient-to-tr from-primary-start to-primary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono px-10 rounded-lg"
+          >
+            New Post
+          </button>
+        </div>
+
         <div className="flex flex-row flex-wrap">
           {!loading
             ? posts.map((post, i) => {

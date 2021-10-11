@@ -57,16 +57,6 @@ export default function Profile() {
                 <div>
                   <button
                     onClick={() => {
-                      signOut().then(() => {
-                        router.push("/splash");
-                      });
-                    }}
-                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
-                  >
-                    Log Out
-                  </button>
-                  <button
-                    onClick={() => {
                       router.push("/posts/edit");
                     }}
                     className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
@@ -80,6 +70,16 @@ export default function Profile() {
                     className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-8 rounded-lg"
                   >
                     Edit User
+                  </button>
+                  <button
+                    onClick={() => {
+                      signOut().then(() => {
+                        router.push("/splash");
+                      });
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-danger-start to-danger-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+                  >
+                    Log Out
                   </button>
                 </div>
               </div>
