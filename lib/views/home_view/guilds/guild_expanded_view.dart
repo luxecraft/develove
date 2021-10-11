@@ -33,16 +33,17 @@ class _GuildExpandedViewState extends State<GuildExpandedView> {
   @override
   void initState() {
     super.initState();
-    _subscription =
-        supabase.from('messages').on(SupabaseEventTypes.insert, (payload) {
+    _subscription = supabase.from('messages').on(SupabaseEventTypes.insert,
+        (payload) async {
       if (payload.newRecord != null &&
           payload.newRecord!['gid'] == widget.guild.gid) {
-        print("hai");
+        // print("hai");
         print(payload.newRecord);
         provider.Provider.of<MessageModel>(context, listen: false)
             .fetchChanges(payload.newRecord!);
-        // _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-        //     duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        await Future.delayed(Duration(milliseconds: 50));
+        _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 300), curve: Curves.easeIn);
       }
     }).subscribe();
   }

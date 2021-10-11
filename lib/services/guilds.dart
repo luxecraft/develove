@@ -27,9 +27,11 @@ Future<List<Message>> fetchMessages(int guildId) async {
       .from('messages')
       .select()
       .filter('gid', 'eq', guildId)
+      .order('mid', ascending: true)
       .execute();
 
   return (res.data as List<dynamic>).map((e) {
+    print(e);
     return Message.fromJson(e);
   }).toList();
 }
