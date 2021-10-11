@@ -128,14 +128,14 @@ function PostDisplay() {
           <div className="w-2/3 flex flex-row">
             <button
               type="submit"
-              className="bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm"
+              className="bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm text-white"
               disabled={!isValid || !isDirty}
             >
               Save Changes
             </button>
             <button
               type="button"
-              className=" bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm"
+              className=" bg-primary-solid m-3 p-3 w-1/2 rounded-lg shadow-sm text-white"
               onClick={() => setPreview(!preview)}
             >
               {preview ? "Edit" : "Preview"}

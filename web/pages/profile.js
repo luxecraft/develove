@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../lib/auth";
-import { getCurrentUser, signOut } from "../lib/connection";
+import { getCurrentUser, searchUsers, signOut } from "../lib/connection";
 import Image from "next/image";
 import { useRouter } from "next/dist/client/router";
 
