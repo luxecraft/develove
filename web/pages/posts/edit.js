@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +7,7 @@ import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { searchUsers } from "../../lib/connection";
 import { useAuth } from "../../lib/auth";
 import { supabase } from "../../lib/supabase";
+import { useRouter } from "next/dist/client/router";
 
 function PostDisplay() {
   const { register, handleSubmit, reset, watch, formState } = useForm({
@@ -14,6 +15,7 @@ function PostDisplay() {
   });
 
   const currentUser = useAuth();
+  const router = useRouter();
 
   const [preview, setPreview] = useState(false);
 
@@ -39,8 +41,17 @@ function PostDisplay() {
     toast.success("Created Post successfully");
   };
 
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/");
+    }
+  }, [currentUser, router]);
+
   return (
     <div>
+      <h1 className="text-5xl text-center font-bold font-mono text-white my-10">
+        Create Post
+      </h1>
       <form onSubmit={handleSubmit(updatePost)} className="">
         {preview && (
           <div className="flex flex-col items-center">

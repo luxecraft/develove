@@ -8,28 +8,31 @@ const RefinementList = ({
   searchForItems,
   createURL,
 }) => (
-  <ul className="flex justify-center mt-10">
+  <ul className=" hidden lg:flex lg:justify-center lg:mt-10 lg:mx-10">
     <span className="text-white font-bold">Filter By:</span>
-    {items.map((item) => (
-      <span key={item.label}>
-        <a
-          className="text-xs text-white font-medium font-mono bg-primary-end bg-opacity-50 border-primary-start border-2 rounded-full px-3 py-2 mx-2 hover:bg-opacity-80"
-          href={createURL(item.value)}
-          style={{ backgroundColor: item.isRefined ? "#59AF77" : "" }}
-          onClick={(event) => {
-            event.preventDefault();
-            refine(item.value);
-          }}
-        >
-          {isFromSearch ? (
-            <Highlight attribute="label" hit={item} />
-          ) : (
-            item.label
-          )}{" "}
-          ({item.count})
-        </a>
-      </span>
-    ))}
+    {items.map((item, i) => {
+      if (i < 6)
+        return (
+          <span key={item.label}>
+            <a
+              className="text-xs text-white font-medium font-mono bg-primary-end bg-opacity-50 border-primary-start border-2 rounded-full px-3 py-2 mx-2 hover:bg-opacity-80"
+              href={createURL(item.value)}
+              style={{ backgroundColor: item.isRefined ? "#59AF77" : "" }}
+              onClick={(event) => {
+                event.preventDefault();
+                refine(item.value);
+              }}
+            >
+              {isFromSearch ? (
+                <Highlight attribute="label" hit={item} />
+              ) : (
+                item.label
+              )}{" "}
+              ({item.count})
+            </a>
+          </span>
+        );
+    })}
   </ul>
 );
 
