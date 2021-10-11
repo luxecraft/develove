@@ -48,7 +48,7 @@ export default function Guilds() {
     );
 
   return (
-    <div className="flex justify-center text-center">
+    <div className="flex justify-center text-center px-20">
       <GuildList />
     </div>
   );

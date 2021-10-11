@@ -41,15 +41,15 @@ export default function Home() {
   return (
     <div>
       <div className="px-40 flex flex-col items-center justify-between">
-        <div className="flex flex-row items-center justify-between w-1/2">
-          <h1 className="text-5xl font-bold font-mono text-white my-10">
+        <div className="flex flex-row items-center justify-between ld:w-10/12 xl:w-1/2">
+          <h1 className="md:text-lg lg:text-3xl xl:text-5xl font-bold font-mono text-white my-10 mx-10">
             {getTimeOfDay(new Date().getHours())} 🗞
           </h1>
           <button
             onClick={() => {
               router.push("/posts/edit");
             }}
-            className="h-10 bg-gradient-to-tr from-primary-start to-primary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono px-10 rounded-lg"
+            className="h-10 md:text-xs xl:text-md bg-gradient-to-tr from-primary-start to-primary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono px-10 rounded-lg"
           >
             New Post
           </button>

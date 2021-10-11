@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <div className="flex justify-center">
-      <div className="mt-40 w-5/12 flex p-10 bg-gradient-to-br from-primary-start to-primary-end rounded-lg shadow-lg">
+      <div className="mt-40 md:w-9/12 w-8/12 xl:w-1/2 flex p-10 bg-gradient-to-br from-primary-start to-primary-end rounded-lg shadow-lg">
         {thisUser ? (
           <>
             <Image
