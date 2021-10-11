@@ -13,13 +13,9 @@ export default function GuildDetail() {
   const handleChange = (e) => {
     setNewClientText(e.target.value);
   };
+
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-    messages.sort((a, b) => {
-      return a.id - b.id;
-    });
-    setmessages(messages);
-    console.log(messages);
   }, [messages]);
 
   const fetchMessages = async () => {
@@ -32,19 +28,25 @@ export default function GuildDetail() {
 
       console.log(fetchedMessages.data);
 
-      fetchedMessages?.data?.map(async (message, i) => {
-        const sender = await supabase
-          .from("users")
-          .select("username")
-          .match({ uid: message.uid });
+      if (
+        fetchedMessages?.data !== null &&
+        fetchedMessages?.data !== undefined
+      ) {
+        console.log(fetchedMessages.data.length);
+        for (let i = 0; i < fetchedMessages.data.length; i++) {
+          const sender = await supabase
+            .from("users")
+            .select("username")
+            .match({ uid: fetchedMessages.data[i].uid });
 
-        const newText = new Message({
-          id: message.mid,
-          message: message.text,
-          senderName: sender.data[0].username,
-        });
-        setmessages((messages) => [...messages, newText]);
-      });
+          const newText = new Message({
+            id: fetchedMessages.data[i].mid,
+            message: fetchedMessages.data[i].text,
+            senderName: sender.data[0].username,
+          });
+          setmessages((messages) => [...messages, newText]);
+        }
+      }
     }
   };
 
