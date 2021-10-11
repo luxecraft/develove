@@ -23,7 +23,7 @@ Develove is a super cool social media forum that aims to bring in the best featu
 
 ## The team 🤡
 
-We are a team of 3.
+We are a team of 3... (...really broke undergrad students 🎓)
 
 - [Sabesh](https://github.com/programVeins/) is a coffee addict, maniac, designer and developer. Works mostly on iOS (also a WWDC21 Scholar) and the Web, has a [twitter](https://twitter.com/sabeshbharathi)!
 - [Hari](https://github.com/harisarang) is a cloud enthusiast and an avid open source developer. Works mostly on backend-data related stuff with a love for problem solving. Oh he has a [twitter](https://twitter.com/_harisaran_) too!
