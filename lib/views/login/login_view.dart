@@ -1,6 +1,6 @@
 import 'package:develove/services/supabase/auth/auth_state.dart';
 import 'package:develove/services/supabase/constants.dart';
-import 'package:develove/home_view.dart';
+// import 'package:develove/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 import 'package:supabase_flutter/src/supabase_auth.dart';
@@ -144,42 +144,42 @@ class _LoginViewState extends AuthState<LoginView> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    MaterialButton(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (_) => HomeView()),
-                            (route) => false);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              "assets/images/Apple.png",
-                              height: 24.0,
-                              width: 24.0,
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Expanded(
-                                child: Text(
-                              "Sign in with Apple",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  ?.apply(
-                                      color: Colors.black, fontWeightDelta: 2),
-                            )),
-                          ],
-                        ),
-                      ),
-                    )
+                    // SizedBox(height: 16),
+                    // MaterialButton(
+                    //   color: Colors.white,
+                    //   shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(8.0)),
+                    //   onPressed: () {
+                    //     Navigator.pushAndRemoveUntil(
+                    //         context,
+                    //         MaterialPageRoute(builder: (_) => HomeView()),
+                    //         (route) => false);
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(12.0),
+                    //     child: Row(
+                    //       children: [
+                    //         Image.asset(
+                    //           "assets/images/Apple.png",
+                    //           height: 24.0,
+                    //           width: 24.0,
+                    //         ),
+                    //         SizedBox(
+                    //           width: 20.0,
+                    //         ),
+                    //         Expanded(
+                    //             child: Text(
+                    //           "Sign in with Apple",
+                    //           style: Theme.of(context)
+                    //               .textTheme
+                    //               .subtitle1
+                    //               ?.apply(
+                    //                   color: Colors.black, fontWeightDelta: 2),
+                    //         )),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ),

@@ -26,7 +26,7 @@ class ConnectionView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 8.0, vertical: 4.0),
                     child: SizedBox(
-                      height: 200,
+                      height: 150,
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -36,8 +36,11 @@ class ConnectionView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   FutureBuilder(
                                       future: http.get(Uri.parse(
@@ -78,32 +81,30 @@ class ConnectionView extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  OutlinedButton(
-                                    onPressed: () async {
-                                      await acceptConnection(
-                                          connectionRequests[position].uid);
-                                    },
-                                    child: Text("Accept"),
-                                  ),
-                                  SizedBox(width: 10.0),
-                                  OutlinedButton(
-                                    onPressed: () async {
-                                      await rejectConnection(
-                                          connectionRequests[position].uid);
-                                    },
-                                    child: Text(
-                                      "Reject",
-                                      style: TextStyle(
-                                        color: Colors.red,
+                                  Column(
+                                    children: [
+                                      OutlinedButton(
+                                        onPressed: () async {
+                                          await acceptConnection(
+                                              connectionRequests[position].uid);
+                                        },
+                                        child: Text("Accept"),
                                       ),
-                                    ),
+                                      SizedBox(width: 10.0),
+                                      OutlinedButton(
+                                        onPressed: () async {
+                                          await rejectConnection(
+                                              connectionRequests[position].uid);
+                                        },
+                                        child: Text(
+                                          "Reject",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-
-                                  // : Container(),
                                 ],
                               ),
                             ],

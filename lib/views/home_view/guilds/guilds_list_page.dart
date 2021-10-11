@@ -75,20 +75,11 @@ class GuildListPage extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => MultiProvider(
-                                                  providers: [
-                                                    ChangeNotifierProvider(
-                                                        create: (_) =>
-                                                            MessageModel(
-                                                                guildId:
-                                                                    guild.gid,
-                                                                messages: [])),
-                                                    ChangeNotifierProvider
-                                                        .value(
-                                                            value: Provider.of<
-                                                                    GuildModel>(
-                                                                context)),
-                                                  ],
+                                          builder: (_) =>
+                                              ChangeNotifierProvider(
+                                                  create: (_) => MessageModel(
+                                                      guildId: guild.gid,
+                                                      messages: []),
                                                   builder: (context, _) {
                                                     return GuildExpandedView(
                                                       guild: guild,

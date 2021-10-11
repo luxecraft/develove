@@ -4,7 +4,7 @@ import 'package:supabase/supabase.dart';
 
 import 'package:develove/services/supabase/auth/auth_required.dart';
 
-import 'package:develove/views/home_view/explore/explore_page.dart';
+// import 'package:develove/views/home_view/explore/explore_page.dart';
 import 'package:develove/views/home_view/guilds/guilds_list_page.dart';
 import 'package:develove/views/home_view/posts/home_page.dart';
 import 'package:develove/views/home_view/profile/profile_page.dart';
