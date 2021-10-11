@@ -28,7 +28,7 @@ function PostDisplay() {
   });
 
   return (
-    <div>
+    <div className="posts">
       {!loading ? (
         <div className="flex flex-col items-center">
           <div className="w-2/3 m-3 px-10 py-3 flex justify-center text-white">
