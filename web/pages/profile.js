@@ -10,12 +10,21 @@ export default function Profile() {
   const router = useRouter();
 
   useEffect(() => {
-    if (currentUser)
-      getCurrentUser(currentUser.email).then((user) => {
-        setThisUser(user);
+    if (currentUser) {
+      searchUsers(currentUser.email).then((res) => {
+        if (res == -1) {
+          router.push("/onboarding");
+        } else {
+          getCurrentUser(currentUser.email).then((user) => {
+            setThisUser(user);
+          });
+        }
       });
+    } else {
+      router.push("/signup");
+    }
     console.log(currentUser);
-  }, [currentUser]);
+  }, [currentUser, router]);
 
   return (
     <div className="flex justify-center">
