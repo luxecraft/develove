@@ -15,6 +15,10 @@ module.exports = {
         end: "#282828",
         solid: "#2D2D2D",
       },
+      danger: {
+        start: "#EE5B5B",
+        end: "#BB3A3A",
+      },
       white: "#FFFFFF",
       black: "#000000",
       accentGray: "#1F1F1F",

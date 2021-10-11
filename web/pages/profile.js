@@ -20,8 +20,6 @@ export default function Profile() {
           });
         }
       });
-    } else {
-      router.push("/signup");
     }
     console.log(currentUser);
   }, [currentUser, router]);
@@ -44,36 +42,47 @@ export default function Profile() {
             />
             <div className="ml-10 w-full">
               <div className="flex justify-between">
-                <h1 className="text-4xl font-mono font-semibold">
-                  {thisUser.fullName}
-                </h1>
-                <button
-                  onClick={() => {
-                    signOut().then(() => {
-                      router.push("/splash");
-                    });
-                  }}
-                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
-                >
-                  Log Out
-                </button>
+                <div>
+                  <h1 className="text-4xl font-mono font-semibold">
+                    {thisUser.fullName}
+                  </h1>
+                  <h1 className="text-md mt-1 font-bold opacity-80">
+                    @{thisUser.username}
+                  </h1>
+                  <h1 className="text-md mt-1 font-bold opacity-80">
+                    {thisUser.email}
+                  </h1>
+                </div>
+
+                <div>
+                  <button
+                    onClick={() => {
+                      signOut().then(() => {
+                        router.push("/splash");
+                      });
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+                  >
+                    Log Out
+                  </button>
+                  <button
+                    onClick={() => {
+                      router.push("/posts/edit");
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
+                  >
+                    New Post
+                  </button>
+                  <button
+                    onClick={() => {
+                      router.push("/edituser");
+                    }}
+                    className="block mt-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-8 rounded-lg"
+                  >
+                    Edit User
+                  </button>
+                </div>
               </div>
-              <div className="flex justify-between mt-4">
-                <h1 className="text-md mt-1 font-bold opacity-80">
-                  @{thisUser.username}
-                </h1>
-                <button
-                  onClick={() => {
-                    router.push("/posts/edit");
-                  }}
-                  className="bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-9 rounded-lg"
-                >
-                  New Post
-                </button>
-              </div>
-              <h1 className="text-md mt-1 font-light opacity-80">
-                {thisUser.email}
-              </h1>
               <div className="mt-4">
                 {thisUser.tags.map((tag, i) => {
                   if (i < 4)

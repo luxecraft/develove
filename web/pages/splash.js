@@ -26,7 +26,7 @@ export default function Splash() {
         </h1>
         <br />
         <div className="flex items-center justify-center mt-20">
-          <p className="text-2xl font-sans font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Here in Develove, you can meet and hangout with developers from all
             around the world.
           </p>
@@ -34,13 +34,13 @@ export default function Splash() {
         </div>
         <div className="flex items-center justify-center mt-20">
           <Image src="/search.svg" alt="Earth" height={400} width={400} />
-          <p className="text-2xl font-sans font-semibold w-8/12 text-left ml-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left ml-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Search them up using the interactive map, or shoot them a DM. You
             might get lucky!
           </p>
         </div>
         <div className="flex items-center justify-center my-20">
-          <p className="text-2xl font-sans font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
+          <p className="text-2xl font-mono font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Meet people tailored to your interests, build hype, and new friends
             using Develove.
           </p>

@@ -13,6 +13,14 @@ export default function GuildDetail() {
   const handleChange = (e) => {
     setNewClientText(e.target.value);
   };
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+    messages.sort((a, b) => {
+      return a.id - b.id;
+    });
+    setmessages(messages);
+    console.log(messages);
+  }, [messages]);
 
   const fetchMessages = async () => {
     if (messages.length === 0) {
