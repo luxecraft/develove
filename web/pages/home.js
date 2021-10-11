@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { supabase } from "../lib/supabase";
-import { truncatePost } from "../lib/utils";
+import { getTimeOfDay, truncatePost } from "../lib/utils";
 import Link from "next/link";
 import { useAuth } from "../lib/auth";
 import { useRouter } from "next/dist/client/router";
@@ -43,7 +43,7 @@ export default function Home() {
       <div className="px-40 flex flex-col items-center justify-between">
         <div className="flex flex-row items-center justify-between w-1/2">
           <h1 className="text-5xl font-bold font-mono text-white my-10">
-            Good Morning 🌥&nbsp;🗞
+            {getTimeOfDay(new Date().getHours())} 🗞
           </h1>
           <button
             onClick={() => {

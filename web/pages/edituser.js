@@ -38,7 +38,7 @@ export default function EditUser() {
     if (thisUser) {
       setUserObject({
         fullName: thisUser.fullName,
-        tags: thisUser.tags,
+        tags: thisUser.tags.join(","),
         username: thisUser.username,
       });
     }
@@ -51,18 +51,32 @@ export default function EditUser() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let tagsToBeSent = [];
+    console.log(userObject);
     tagsToBeSent = userObject.tags.split(",");
+    try {
+      let res = await supabase
+        .from("users")
+        .update({
+          fullName: userObject.fullName,
+          tags: tagsToBeSent,
+          username: userObject.username,
+        })
+        .match({ email: currentUser.email });
+      console.log(res);
 
-    await supabase
-      .from("users")
-      .update({
-        fullName: userObject.fullName,
-        tags: tagsToBeSent,
-        username: userObject.username,
-      })
-      .match({ email: currentUser.email });
-    toast.success("User Updated");
-    router.push("/profile");
+      if (res.error) {
+        throw res.error;
+      }
+      toast.success("User Updated");
+      router.push("/profile");
+    } catch (error) {
+      console.log(error);
+      if (error.code == 23505) {
+        toast.error("Username already taken");
+      } else {
+        toast.error("Something went wrong, check your details");
+      }
+    }
   };
 
   return (
@@ -81,10 +95,13 @@ export default function EditUser() {
               height="120"
               width="120"
             />
-            <form className="text-center mt-10" onSubmit={handleSubmit}>
-              <div className="my-5">
+            <form
+              className="text-left flex flex-col items-center mt-10 mx-20"
+              onSubmit={handleSubmit}
+            >
+              <div className="my-5 flex flex-row justify-between w-full">
                 <label className="text-black text-2xl font-thin mr-10">
-                  Full Name
+                  Full Name (real or Fake)
                 </label>
                 <input
                   className="rounded-lg p-2 focus:outline-none"
@@ -95,9 +112,9 @@ export default function EditUser() {
                   placeholder="Full Name"
                 />
               </div>
-              <div className="my-5">
+              <div className="my-5 flex flex-row justify-between w-full">
                 <label className="text-black text-2xl font-thin mr-10">
-                  Your tags
+                  Your tags (separated by commas)
                 </label>
                 <input
                   className="rounded-lg p-2 focus:outline-none"
@@ -108,9 +125,9 @@ export default function EditUser() {
                   placeholder="Enter , separated values"
                 />
               </div>
-              <div className="my-5">
+              <div className="my-5 flex flex-row justify-between w-full">
                 <label className="text-black text-2xl font-thin mr-10">
-                  Username
+                  Username (does <b>COOL</b> things to your dp)
                 </label>
                 <input
                   className="rounded-lg p-2 focus:outline-none"
@@ -121,20 +138,18 @@ export default function EditUser() {
                   placeholder="Username"
                 />
               </div>
-
+              <button
+                type="submit"
+                className=" w-5/12 my-10 mx-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+              >
+                Update
+              </button>
               <button
                 type="button"
-                className="my-10 mx-5 bg-gradient-to-tr from-danger-start to-danger-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
+                className=" w-5/12 mx-5 bg-gradient-to-tr from-danger-start to-danger-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
                 onClick={() => router.push("/profile")}
               >
                 Cancel
-              </button>
-
-              <button
-                type="submit"
-                className="my-10 mx-5 bg-gradient-to-tr from-secondary-start to-secondary-end shadow-xl hover:bg-opacity-70 text-white font-bold font-mono py-2 px-10 rounded-lg"
-              >
-                Update
               </button>
             </form>
           </>
