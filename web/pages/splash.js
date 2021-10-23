@@ -39,7 +39,7 @@ export default function Splash() {
             might get lucky!
           </p>
         </div>
-        <div className="flex items-center justify-center my-20">
+        <div className="flex items-center justify-center mt-20">
           <p className="text-2xl font-mono font-semibold w-8/12 text-left mr-20 text-white bg-gradient-to-br from-secondary-start to-secondary-end px-20 py-14 rounded-lg drop-shadow-lg shadow-inner">
             Meet people tailored to your interests, build hype, and new friends
             using Develove.
