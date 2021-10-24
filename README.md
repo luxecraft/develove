@@ -29,7 +29,6 @@ We are a team of 3... (...really broke undergrad students 🎓)
 - [Hari](https://github.com/harisarang) is a cloud enthusiast and an avid open source developer. Works mostly on backend-data related stuff with a love for problem solving. Oh he has a [twitter](https://twitter.com/_harisaran_) too!
 - [Nivas](https://github.com/Nithsua), when not watching anime or listening to pop music, works on systems, RUST and linux. Loves all things tech and knows his way around flutter. Looks like he has [twitter](https://twitter.com/nithsua) too.
 
-![The Team](https://eiitsgowqlbvulpsadlu.supabase.in/storage/v1/object/sign/images/team.JPEG?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvdGVhbS5KUEVHIiwiaWF0IjoxNjMzODg4MzIwLCJleHAiOjE5NDkyNDgzMjB9.j-qXzpJxq6zT6tsnQwQcOkz9vluTvQeIGtbfh9dNQEQ)
 
 ## The process 🤔
 
