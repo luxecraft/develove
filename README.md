@@ -44,3 +44,5 @@ We constantly see people whine on twitter about how we need a platform for devel
 - For the community, by the community ❤️
 - Free forever, Open sourced 👨🏾‍💻👩🏼‍💻
 - Simplifies the developer community and OSS ⚡️
+
+[![Vercel](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)](https://vercel.com/?utm_source=luxecraft&utm_campaign=oss)
