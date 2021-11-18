@@ -15,7 +15,7 @@ Future<Map<String, dynamic>> searchConnections(String search) async {
         protocol: 'https',
       ),
     },
-    apiKey: 'TPBbQ8qrVfkokxdno0Xt8GakbmH26Wkcjy15VhMPnK3jlNR4',
+    apiKey: 'hqrIn0Xqpru1MyF6GXM88RxfdOnZLVFp',
     connectionTimeout: Duration(seconds: 2),
   ));
 
