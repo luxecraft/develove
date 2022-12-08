@@ -1,6 +1,4 @@
-import 'package:develove/services/supabase/auth/auth_state.dart';
 import 'package:develove/services/supabase/constants.dart';
-// import 'package:develove/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 import 'package:supabase_flutter/src/supabase_auth.dart';
@@ -12,18 +10,17 @@ class LoginView extends StatefulWidget {
   _LoginViewState createState() => _LoginViewState();
 }
 
-class _LoginViewState extends AuthState<LoginView> {
-  // ignore: unused_field
+class _LoginViewState extends State<LoginView> {
   bool _isLoading = false;
 
   Future<void> _signInWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.google,
-        options: AuthOptions(
-          redirectTo: 'org.luxecraft.develove://login-callback/',
-        ));
+    await supabase.auth.signInWithOAuth(
+      Provider.google,
+      redirectTo: 'org.luxecraft.develove://login-callback/',
+    );
 
     setState(() {
       _isLoading = false;
@@ -34,10 +31,10 @@ class _LoginViewState extends AuthState<LoginView> {
     setState(() {
       _isLoading = true;
     });
-    await supabase.auth.signInWithProvider(Provider.github,
-        options: AuthOptions(
-          redirectTo: 'org.luxecraft.develove://login-callback/',
-        ));
+    await supabase.auth.signInWithOAuth(
+      Provider.github,
+      redirectTo: 'org.luxecraft.develove://login-callback/',
+    );
 
     setState(() {
       _isLoading = false;

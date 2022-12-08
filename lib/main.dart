@@ -2,6 +2,7 @@ import 'package:develove/home_view.dart';
 import 'package:develove/views/login/login_view.dart';
 import 'package:develove/views/login/new_user_view.dart';
 import 'package:develove/views/login/splash_view.dart';
+import 'package:develove/views/onboard_view/onboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,11 +20,13 @@ Future<void> main() async {
   await dotenv.load(fileName: ".env");
 
   await Supabase.initialize(
-    url: dotenv.env['SUPABASE_URL'],
-    anonKey: dotenv.env['SUPABASE_PUBLIC_ANON'],
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_PUBLIC_ANON']!,
   );
   runApp(App());
 }
+
+final navigationKey = GlobalKey<NavigatorState>();
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -31,6 +34,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigationKey,
       theme: ThemeData(
         backgroundColor: Color(0xFF2D2D2D),
         cardTheme: CardTheme(
@@ -85,7 +89,8 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => SplashView(),
+        '/onboard': (context) => OnboardView(),
         '/home': (context) => HomeView(),
         '/newUser': (context) => NewUserView(),
         '/login': (context) => LoginView(),

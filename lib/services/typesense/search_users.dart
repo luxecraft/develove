@@ -1,4 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:typesense/typesense.dart';
 
 Future<Map<String, dynamic>> searchConnections(String search) async {
@@ -8,14 +7,14 @@ Future<Map<String, dynamic>> searchConnections(String search) async {
   };
 
   final client = Client(Configuration(
+    'hqrIn0Xqpru1MyF6GXM88RxfdOnZLVFp',
     nodes: {
       Node(
-        host: 'develove.ts.luxecraft.org',
+        Protocol.https,
+        'develove.ts.luxecraft.org',
         port: 443,
-        protocol: 'https',
       ),
     },
-    apiKey: 'hqrIn0Xqpru1MyF6GXM88RxfdOnZLVFp',
     connectionTimeout: Duration(seconds: 2),
   ));
 

@@ -8,16 +8,13 @@ Future<void> updateUser(
     'fullName': fullName,
     'tags': tags,
   };
-  final res = await supabase.from('users').insert(data).execute();
+  final res = await supabase.from('users').insert(data);
   print(res.status);
 }
 
 Future<dynamic> fetchUserData(String email) async {
-  final res = await supabase
-      .from('users')
-      .select()
-      .filter('email', 'eq', email)
-      .execute();
+  final res =
+      await supabase.from('users').select().filter('email', 'eq', email);
 
   print(res.data);
   print(res.error);

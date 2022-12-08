@@ -1,10 +1,5 @@
 import 'package:develove/views/home_view/explore/new_explore_page.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase/supabase.dart';
-
-import 'package:develove/services/supabase/auth/auth_required.dart';
-
-// import 'package:develove/views/home_view/explore/explore_page.dart';
 import 'package:develove/views/home_view/guilds/guilds_list_page.dart';
 import 'package:develove/views/home_view/posts/home_page.dart';
 import 'package:develove/views/home_view/profile/profile_page.dart';
@@ -16,7 +11,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends AuthRequiredState<HomeView> {
+class _HomeViewState extends State<HomeView> {
   String? _userId;
   late int _currentPage;
   PageController _pageController = PageController();
@@ -25,19 +20,6 @@ class _HomeViewState extends AuthRequiredState<HomeView> {
   void initState() {
     super.initState();
     _currentPage = 0;
-  }
-
-  @override
-  void onAuthenticated(Session session) {
-    final user = session.user;
-    if (user != null) {
-      _userId = user.email;
-    }
-  }
-
-  @override
-  void onUnauthenticated() {
-    Navigator.of(context).pushReplacementNamed('/login');
   }
 
   @override
